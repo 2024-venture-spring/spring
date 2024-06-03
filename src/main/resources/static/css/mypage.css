@@ -1,329 +1,100 @@
-* {
-  box-sizing: border-box;
-}
 body {
-  font-size: 14px;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Pretendard-Regular', Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
 }
-.container {
-  width: 100%;
-  height: 1206px;
-  background: rgba(255, 255, 255, 1);
-  opacity: 1;
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  overflow: hidden;
+
+.sidebar {
+  width: 200px;
+  height: 100vh;
+  background: #f7f7f7;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
+.profile-container {
+  flex: 1;
+  margin-left: 200px;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .profile_section {
   width: 613px;
-  height: 632px;
-  background: url("../images/profile_section.png");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  margin: 32px;
-  opacity: 1;
-  position: absolute;
-  top: 135px;
-  left: 426px;
-  overflow: hidden;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 32px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
 .profile_picture {
-  width: 133px;
-  height: 64px;
-  background: url("../images/profile_picture.png");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  margin: 24px;
-  opacity: 1;
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  overflow: hidden;
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
 }
+
 .picture_frame {
   width: 64px;
   height: 64px;
   background: rgba(247, 247, 247, 1);
-  opacity: 1;
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  border-radius: 1000px;
+  border-radius: 50%;
   overflow: hidden;
+  margin-right: 16px;
 }
+
 .profile_image {
   width: 64px;
   height: 64px;
-  background: url("../images/v2316_8.png");
-  background-repeat: no-repeat;
-  background-position: center center;
+  background: url('profile_image.jpg') no-repeat center center;
   background-size: cover;
-  opacity: 1;
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  border-radius: 1000px;
-  overflow: hidden;
+  border-radius: 50%;
 }
-.profile_name {
-  width: 45px;
-  height: 24px;
-  background: url("../images/profile_name.png");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  opacity: 1;
-  position: absolute;
-  top: 20px;
-  left: 88px;
-  overflow: hidden;
-}
-.name_text {
-  width: 45px;
-  color: rgba(0, 0, 0, 1);
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  font-family: Inter;
-  font-weight: Medium;
-  font-size: 16px;
-  opacity: 1;
-  text-align: left;
-}
-.id_section {
-  width: 613px;
-  height: 100px;
-  background: url("../images/id_section.png");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  margin: 8px;
-  opacity: 1;
-  position: absolute;
-  top: 96px;
-  left: 0px;
-  overflow: hidden;
-}
-.id_label {
-  width: 613px;
-  color: rgba(0, 0, 0, 1);
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  font-family: Inter;
-  font-weight: Medium;
-  font-size: 16px;
-  opacity: 1;
-  text-align: left;
-}
-.id_value {
-  width: 613px;
-  height: 40px;
-  background: rgba(255, 255, 255, 1);
-  padding: 8px 16px;
-  margin: 16px;
-  opacity: 1;
-  position: absolute;
-  top: 32px;
-  left: 0px;
-  border-radius: 8px;
-  overflow: hidden;
-}
-.id_text {
-  width: 581px;
-  color: rgba(0, 0, 0, 1);
-  position: absolute;
-  top: 8px;
-  left: 16px;
-  font-family: Inter;
-  font-weight: Regular;
-  font-size: 16px;
-  opacity: 1;
-  text-align: left;
-}
-.phone_section {
-  width: 613px;
-  height: 100px;
-  background: url("../images/phone_section.png");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  margin: 8px;
-  opacity: 1;
-  position: absolute;
-  top: 228px;
-  left: 0px;
-  overflow: hidden;
-}
-.phone_label {
-  width: 613px;
-  color: rgba(0, 0, 0, 1);
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  font-family: Inter;
-  font-weight: Medium;
-  font-size: 16px;
-  opacity: 1;
-  text-align: left;
-}
-.phone_value {
-  width: 613px;
 
-  background: rgba(255, 255, 255, 1);
-  padding: 16px;
-  margin: 16px;
-  opacity: 1;
-  position: absolute;
-  top: 32px;
-  left: 0px;
-  border-radius: 8px;
-  overflow: hidden;
+.profile_name {
+  font-size: 24px;
+  font-weight: bold;
 }
-.phone_text {
-  width: 581px;
-  color: rgba(0, 0, 0, 1);
-  position: absolute;
-  top: 8px;
-  left: 16px;
-  font-family: Inter;
-  font-weight: Regular;
+
+.id_section, .phone_section, .password_section {
+  margin-bottom: 24px;
+}
+
+.id_label, .phone_label,  .current_password_label, .new_password_label, .confirm_password_label {
   font-size: 16px;
-  opacity: 1;
-  text-align: left;
+  font-weight: bold;
+  margin-bottom: 8px;
+  display: block;
 }
+
+.id_value, .phone_value, .current_password, .new_password, .confirm_password {
+  display: flex;
+  flex-direction: column;
+}
+
 input[type="text"], input[type="password"] {
   width: calc(100% - 32px);
   padding: 8px;
   margin-top: 8px;
   border: 1px solid #ccc;
   border-radius: 8px;
+  box-sizing: border-box;
 }
-.password_section {
-  width: 613px;
-  height: 200px;
-  background: url("../images/password_section.png");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  margin: 8px;
-  opacity: 1;
-  position: absolute;
-  top: 360px;
-  left: 0px;
-  overflow: hidden;
-}
-.password_change_label {
-  width: 613px;
-  color: rgba(0, 0, 0, 1);
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  font-family: Inter;
-  font-weight: Medium;
-  font-size: 16px;
-  opacity: 1;
-  text-align: left;
-}
-.current_password {
-  width: 613px;
-  height: auto;
-  background: rgba(255, 255, 255, 1);
-  padding: 16px;
-  margin: 16px;
-  opacity: 1;
-  position: absolute;
-  top: 32px;
-  left: 0px;
-  border-radius: 8px;
-  overflow: hidden;
-}
-.current_password_label {
-  width: 581px;
-  color: rgba(0, 0, 0, 1);
-  position: absolute;
-  top: 8px;
-  left: 16px;
-  font-family: Inter;
-  font-weight: Regular;
-  font-size: 16px;
-  opacity: 1;
-  text-align: left;
-}
-.new_password {
-  width: 613px;
-  height: auto;
-  background: rgba(255, 255, 255, 1);
-  padding: 16px;
-  margin: 16px;
-  opacity: 1;
-  position: absolute;
-  top: 80px;
-  left: 0px;
-  border-radius: 8px;
-  overflow: hidden;
-}
-.new_password_label {
-  width: 581px;
-  color: rgba(0, 0, 0, 1);
-  position: absolute;
-  top: 8px;
-  left: 16px;
-  font-family: Inter;
-  font-weight: Regular;
-  font-size: 16px;
-  opacity: 1;
-  text-align: left;
-}
-.confirm_password {
-  width: 613px;
-  height: auto;
-  background: rgba(255, 255, 255, 1);
-  padding: 16px;
-  margin: 16px;
-  opacity: 1;
-  position: absolute;
-  top: 128px;
-  left: 0px;
-  border-radius: 8px;
-  overflow: hidden;
-}
-.confirm_password_label {
-  width: 581px;
-  color: rgba(0, 0, 0, 1);
-  position: absolute;
-  top: 8px;
-  left: 16px;
-  font-family: Inter;
-  font-weight: Regular;
-  font-size: 16px;
-  opacity: 1;
-  text-align: left;
-}
+
 .save_button {
-  width: 139px;
-  height: 40px;
-  background: rgba(0, 0, 0, 1);
-  margin: 8px;
-  opacity: 1;
-  position: absolute;
-  top: 592px;
-  left: 0px;
-  border-radius: 10px;
-  overflow: hidden;
-}
-.save_button_text {
-  width: 107px;
-  color: rgba(255, 255, 255, 1);
-  position: absolute;
-  top: 8px;
-  left: 16px;
-  font-family: Inter;
-  font-weight: Medium;
+  width: 100%;
+  text-align: center;
+  background: #000;
+  color: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
   font-size: 16px;
-  opacity: 1;
-  text-align: left;
+  font-weight: bold;
 }
