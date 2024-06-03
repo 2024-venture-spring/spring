@@ -8,10 +8,9 @@ document.addEventListener("DOMContentLoaded", function() {
         // 마이페이지 메뉴 활성화
         profileMenuItem.classList.add("active");
         const img = profileMenuItem.querySelector('img');
-        img.src = img.getAttribute('data-active-src');
+        img.src = img.getAttribute('data-active-src'); // 이미지를 올바르게 설정
 
         const headerMenu = document.getElementById("headerMenu");
-        headerMenu.style.display = 'none';
         hidePosts();
     }
 
