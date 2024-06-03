@@ -52,7 +52,6 @@ body {
 .profile_image {
   width: 64px;
   height: 64px;
-  background: url('profile_image.jpg') no-repeat center center;
   background-size: cover;
   border-radius: 50%;
 }

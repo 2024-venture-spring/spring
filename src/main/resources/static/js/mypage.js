@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function() {
         img.src = img.getAttribute('data-active-src'); // 이미지를 올바르게 설정
 
         const headerMenu = document.getElementById("headerMenu");
-        hidePosts();
+       //hidePosts();
     }
 
     profileMenuItem.addEventListener("click", function(event) {
