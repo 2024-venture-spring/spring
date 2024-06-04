@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet" />
+  <link th:href="@{/css/purchashistory.css}" rel="stylesheet" />
+  <link th:href="@{/css/menu.css}" rel="stylesheet" />
+  <script type="text/javascript" th:src="@{/js/menu.js}" th:defer></script>
+  <script type="text/javascript" th:src="@{/js/post.js}" th:defer></script>
+  <script type="text/javascript" th:src="@{/js/mypage.js}" th:defer></script>
+  <script type="text/javascript" th:src="@{/js/content.js}" th:defer></script>
+  <title>Document</title>
+</head>
+<body>
+
+<!-- 헤더 포함 -->
+<div th:replace="mypage/header :: header"></div>
+
+<!-- 사이드바 포함 -->
+<div th:replace="mypage/sidebar :: sidebar"></div>
+
+<div class="container">
+  <div class="profile-card">
+    <div class="profile-header">
+      <div class="profile-picture">
+        <img th:src="@{/img/logo.jpeg}" alt="Profile Picture">
+      </div>
+      <div class="profile-name"><span class="profile-name-text" th:text="${profileName}"></span></div>
+    </div>
+    <div class="transaction-table">
+      <div class="transaction-header">
+        <span class="header-date">날짜</span>
+        <span class="header-item">품목</span>
+        <span class="header-quantity">수량</span>
+        <span class="header-seller">판매자</span>
+      </div>
+      <div th:each="transaction : ${transactions}" class="transaction-row">
+        <span class="transaction-date" th:text="${#dates.format(transaction.buyingDate, 'yyyy-MM-dd')}">날짜</span>
+        <div class="transaction-item"><span class="item-text" th:text="${transaction.buyingNo.buyingTitle}">품목</span></div>
+        <div class="transaction-quantity">
+          <div class="quantity-text"><span class="quantity-amount" th:text="${transaction.buyingQuantity}">수량</span></div>
+        </div>
+        <div class="transaction-seller"><span class="seller-text" th:text="${transaction.buyingNo.user.userName}">판매자</span></div>
+<!--        <div class="transaction-options">-->
+<!--          <div class="options-icon">-->
+<!--            <div class="dot"></div>-->
+<!--            <div class="dot"></div>-->
+<!--            <div class="dot"></div>-->
+<!--          </div>-->
+<!--        </div>-->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 푸터 포함 -->
+<div class="footer-wrapper">
+  <div th:replace="mypage/footer :: footer" class="desktop-footer"></div>
+</div>
+
+</body>
+</html>

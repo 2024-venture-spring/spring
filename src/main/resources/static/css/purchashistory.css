@@ -1,0 +1,117 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+.container {
+  width: 100%;
+  height: 100vh;
+  background: rgba(255, 255, 255, 1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.profile-card {
+  width: 700px;
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.profile-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.profile-picture {
+  width: 64px;
+  height: 64px;
+  background: rgba(247, 247, 247, 1);
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 20px;
+}
+.profile-image {
+  width: 64px;
+  height: 64px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+.profile-name-text {
+  font-weight: 500;
+  font-size: 24px;
+  color: rgba(0, 0, 0, 1);
+}
+.transaction-table {
+  width: 100%;
+}
+.transaction-header,
+.transaction-row {
+  margin-left: 8px;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+}
+.transaction-header {
+  font-weight: 700;
+  color: rgba(130, 130, 130, 1);
+}
+.transaction-row {
+  font-weight: 400;
+  color: rgba(0, 0, 0, 1);
+}
+.transaction-header span {
+  flex: 1;
+  text-align: center;
+}
+.transaction-item, .transaction-quantity, .transaction-price, .transaction-seller, .transaction-options {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* 요소를 중앙에 배치 */
+}
+.transaction-item .item-text, .transaction-quantity .quantity-amount, .transaction-price .price-text, .transaction-seller .seller-text {
+  font-weight: 600;
+  font-size: 14px;
+}
+.transaction-date {
+  margin: 0px 30px; /* 왼쪽에 마진 추가 */
+}
+.transaction-quantity {
+  flex: 1; /* 수량 칸을 줄임 */
+  margin-right: 5px; /* 품목과 수량의 간격 줄임 */
+}
+.transaction-price {
+  flex: 0.7; /* 가격 칸을 줄임 */
+  margin-left: 30px; /* 수량과 가격의 간격 늘림 */
+  margin-right: 10px;
+}
+.transaction-item {
+  flex: 1;
+  margin: 0px 30px; /* 좌우 마진 조정 */
+
+}
+.transaction-seller {
+  flex: 1;
+  margin:0px 10px;
+}
+.transaction-options {
+  display: flex;
+  justify-content: space-between;
+  width: 24px;
+}
+.dot {
+  width: 4px;
+  height: 4px;
+  background: rgba(130, 130, 130, 1);
+  border-radius: 50%;
+}
