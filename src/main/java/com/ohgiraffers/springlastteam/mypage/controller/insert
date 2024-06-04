@@ -1,0 +1,19 @@
+-- 사용자 두 명 추가
+INSERT INTO users (user_id, user_pwd, user_phone, user_apartment, user_apart_num, user_name, user_rights)
+VALUES
+('user1', 'password1', '010-1234-5678', 'Apartment1', '101', 'John Doe', 'Y'),
+('user3', 'password3', '010-1234-5678', 'Apartment1', '101', '김애라', 'N'),
+('user2', 'password2', '010-8765-4321', 'Apartment2', '202', 'Jane Doe', 'N');
+
+-- group_buying 테이블에 판매자(user_no가 1인 사람)로 레코드 추가 여기서 user_no 는 판매자
+INSERT INTO group_buying (buying_title, buying_text, buying_item, user_no)
+VALUES
+('농산물>고구마', '냠냠고구마234키로팔아요', '고구마', 1);
+
+-- buying_user 테이블에 구매 내역 추가
+INSERT INTO buying_user (buying_no, user_no, buying_person, buying_quantity, buying_date)
+VALUES
+(1, 3, 1, 10, '2024-06-04');
+
+
+commit;
