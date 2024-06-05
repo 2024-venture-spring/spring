@@ -5,7 +5,6 @@
   <link th:href="@{/css/purchashistory.css}" rel="stylesheet" />
   <link th:href="@{/css/mypage.css}" rel="stylesheet" />
   <link th:href="@{/css/menu.css}" rel="stylesheet" />
-  <script type="text/javascript" th:src="@{/js/post.js}" th:defer></script>
   <script type="text/javascript" th:src="@{/js/content.js}" th:defer></script>
   <script type="text/javascript" th:src="@{/js/mypage.js}" th:defer></script>
   <title>Document</title>
@@ -22,25 +21,31 @@
   <div class="profile-card">
     <div class="profile-header">
       <div class="profile-picture">
-        <img th:src="@{/img/logo.jpeg}" alt="Profile Picture">
+        <img th:src="@{/img/after-profile.png}" alt="Profile Image" style="width: 60px; height: 60px;">
       </div>
       <div class="profile-name"><span class="profile-name-text" th:text="${profileName}"></span></div>
     </div>
     <div class="transaction-table">
-      <div class="transaction-header">
-        <span class="header-date">날짜</span>
-        <span class="header-item">품목</span>
-        <span class="header-quantity">수량</span>
-        <span class="header-seller">판매자</span>
-      </div>
-      <div th:each="transaction : ${transactions}" class="transaction-row">
-        <span class="transaction-date" th:text="${#dates.format(transaction.buyingDate, 'yyyy-MM-dd')}">날짜</span>
-        <div class="transaction-item"><span class="item-text" th:text="${transaction.buyingNo.buyingTitle}">품목</span></div>
-        <div class="transaction-quantity">
-          <div class="quantity-text"><span class="quantity-amount" th:text="${transaction.buyingQuantity}">수량</span></div>
-        </div>
-        <div class="transaction-seller"><span class="seller-text" th:text="${transaction.buyingNo.user.userName}">판매자</span></div>
-      </div>
+      <table>
+        <thead>
+        <tr class="transaction-header">
+          <th class="header-date">날짜</th>
+          <th class="header-item">품목</th>
+          <th class="header-quantity">수량</th>
+          <th class="header-seller">판매자</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="transaction : ${transactions}" class="transaction-row">
+          <td class="transaction-date" th:text="${#dates.format(transaction.buyingDate, 'yyyy-MM-dd')}">날짜</td>
+          <td class="transaction-item"><span class="item-text" th:text="${transaction.buyingNo.buyingTitle}">품목</span></td>
+          <td class="transaction-quantity">
+            <span class="quantity-amount" th:text="${transaction.buyingQuantity}">수량</span>
+          </td>
+          <td class="transaction-seller"><span class="seller-text" th:text="${transaction.userNo.userName}">판매자</span></td>
+        </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
