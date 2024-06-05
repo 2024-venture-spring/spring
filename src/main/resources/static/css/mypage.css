@@ -61,18 +61,18 @@ body {
   font-weight: bold;
 }
 
-.id_section, .phone_section, .password_section {
+.id_section, .phone_section, .apartment_section, .apartment_num_section, .password_section {
   margin-bottom: 24px;
 }
 
-.id_label, .phone_label,  .current_password_label, .new_password_label, .confirm_password_label {
+.id_label, .phone_label, .apartment_label, .apartment_num_label, .current_password_label, .new_password_label, .confirm_password_label {
   font-size: 16px;
   font-weight: bold;
   margin-bottom: 8px;
   display: block;
 }
 
-.id_value, .phone_value, .current_password, .new_password, .confirm_password {
+.id_value, .phone_value, .apartment_value, .apartment_num_value, .current_password, .new_password, .confirm_password {
   display: flex;
   flex-direction: column;
 }
@@ -100,15 +100,15 @@ input[type="text"], input[type="password"] {
 }
 
 @media (max-width: 767px) {
-    .profile-container {
-      width: 100%;
-      padding: 10px;
-      padding-bottom: 100px;
-      box-sizing: border-box;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow-x: hidden;
+  .profile-container {
+    width: 100%;
+    padding: 10px;
+    padding-bottom: 100px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
 
-    }
+  }
 }

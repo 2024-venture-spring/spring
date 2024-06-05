@@ -7,7 +7,7 @@
   align-items: center;
 }
 .profile-card {
-  width: 710px;
+  width: 600px;
   background: #f9f9f9;
   padding: 20px;
   display: flex;
@@ -29,7 +29,6 @@
   background: rgba(247, 247, 247, 1);
   border-radius: 50%;
   overflow: hidden;
-  margin-right: 20px;
 }
 .profile-name-text {
   font-weight: 500;

@@ -5,6 +5,19 @@ document.addEventListener("DOMContentLoaded", function() {
     const sidebarItems = document.querySelectorAll(".sidebar .menu-item");
     const footerItems = document.querySelectorAll("footer.footer .menu-item");
 
+    // 전화번호 폼 검증 함수
+    function validateForm() {
+        const phone = document.querySelector('input[name="userPhone"]').value;
+        const phonePattern = /^010-\d{4}-\d{4}$/;
+
+        if (!phonePattern.test(phone)) {
+            alert('올바른 전화번호 형식이 아닙니다. 010-1234-5678 형식으로 입력해주세요.');
+            return false;
+        }
+
+        return true;
+    }
+
     // 프로필 메뉴 활성화 함수
     function activateProfileMenuItem() {
         resetIcons();
@@ -39,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function() {
         // 현재 경로가 마이페이지 또는 구매이력 경로와 일치하면 프로필 메뉴를 활성화
         if (currentPath === "/mypage" || currentPath === "/purchashistory") {
             activateProfileMenuItem();
-            activateFooterProfileItem()
+            activateFooterProfileItem();
         }
     }
 
@@ -71,13 +84,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // 푸터 프로필 메뉴 활성화 함수
     function activateFooterProfileItem() {
-
         footerItems.forEach(item => {
             const link = item.querySelector('a');
             const linkPath = new URL(link.href).pathname;
             if (linkPath === "/mypage" || linkPath === "/purchashistory") {
                 item.classList.add("active");
-
             } else {
                 item.classList.remove("active");
             }
@@ -172,5 +183,11 @@ document.addEventListener("DOMContentLoaded", function() {
     // 기본적으로 헤더 메뉴 표시
     if (headerMenu) {
         headerMenu.style.display = 'flex';
+    }
+
+    // 폼 검증 추가
+    const form = document.querySelector('form');
+    if (form) {
+        form.onsubmit = validateForm;
     }
 });
