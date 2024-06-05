@@ -1,11 +1,15 @@
 package com.ohgiraffers.springlastteam.entity;
 
 
-import jakarta.persistence.*;
+import jakarta.persistence.Embeddable;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.*;
 
 import java.io.Serializable;
 
+/* 임베더블 클래스입니다 복합키를 표현해줍니다.*/
 @Embeddable
 @Getter
 @Setter
