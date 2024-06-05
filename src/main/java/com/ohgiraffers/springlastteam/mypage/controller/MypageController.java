@@ -27,15 +27,19 @@ public class MypageController {
 
     @GetMapping("/purchashistory")
     public String getPurchaseHistory(Model model) {
-        // 데이터베이스에서 사용자 정보를 가져옵니다.
-        Users user = userRepository.findById(1).orElseThrow(() -> new RuntimeException("User not found"));
+        // 예를 들어 사용자 3번의 구매 내역을 조회
+        int userNo = 1;
+
+        // 사용자 정보를 가져옵니다.
+        Users user = userRepository.findById(userNo).orElseThrow(() -> new RuntimeException("User not found"));
 
         // 사용자 구매 내역을 가져옵니다.
-        List<BuyingUser> transactions = buyingUserRepository.findByUserNo(user.getUserNo());
+        List<BuyingUser> transactions = buyingUserRepository.findByBuyingPerson(userNo);
 
         model.addAttribute("profileName", user.getUserName()); // 프로필 이름 설정
         model.addAttribute("transactions", transactions);
 
         return "mypage/purchashistory";
     }
+
 }
