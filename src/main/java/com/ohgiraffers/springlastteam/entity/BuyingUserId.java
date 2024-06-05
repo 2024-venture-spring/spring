@@ -1,8 +1,7 @@
 package com.ohgiraffers.springlastteam.entity;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Embeddable;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
@@ -15,9 +14,16 @@ import java.io.Serializable;
 @ToString
 public class BuyingUserId implements Serializable {
 
-    @Column(name = "buying_no")
-    private int buyingNo;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="buying_no")
+    private  GroupBuying buyingNo;
 
-    @Column(name = "user_no")
-    private int userNo;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="user_no")
+    private Users userNo;
+
+    public BuyingUserId(GroupBuying buyingNo, Users userNo) {
+        this.buyingNo = buyingNo;
+        this.userNo = userNo;
+    }
 }
