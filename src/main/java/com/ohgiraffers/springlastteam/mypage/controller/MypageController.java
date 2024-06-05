@@ -41,5 +41,4 @@ public class MypageController {
 
         return "mypage/purchashistory";
     }
-
 }
