@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class MypageController {
@@ -25,7 +26,7 @@ public class MypageController {
 
     @GetMapping("/mypage")
     public String mypage(Model model) {
-        int userNo = 1; // 임의의 userNo = 1로 설정
+        int userNo = 3; // 임의의 userNo = 1로 설정
         Users user = userRepository.findById(userNo).orElseThrow(() -> new RuntimeException("User not found"));
         model.addAttribute("user", user);
         return "mypage/mypage";
@@ -85,18 +86,21 @@ public class MypageController {
 
     @GetMapping("/purchashistory")
     public String getPurchaseHistory(Model model) {
-        // 예를 들어 구매자 1번의 구매 내역을 조회
-        int buyingPerson = 1;
-
-        // 구매자 정보를 가져옵니다.
-        Users buyer = userRepository.findById(buyingPerson).orElseThrow(() -> new RuntimeException("User not found"));
-
-        // 구매자 구매 내역을 가져옵니다.
-        List<BuyingUser> transactions = buyingUserRepository.findByBuyingPerson(buyingPerson);
-
-        // 프로필 이름 설정
-        model.addAttribute("profileName", buyer.getUserName());
+        int userNo = 3; // 임의의 userNo = 3로 설정
+        Users user = userRepository.findById(userNo).orElseThrow(() -> new RuntimeException("User not found"));
+        List<BuyingUser> transactions = buyingUserRepository.findByUserNoUserNo(userNo);
         model.addAttribute("transactions", transactions);
+        model.addAttribute("profileName", user.getUserName()); // 추가: 프로필 이름 설정
+
+        // 추가: 판매자 이름 및 총 가격 설정
+        List<String> sellerNames = transactions.stream()
+                .map(transaction -> transaction.getBuyingNo().getUser().getUserName())
+                .collect(Collectors.toList());
+        List<Integer> totalPrices = transactions.stream()
+                .map(transaction -> transaction.getBuyingQuantity() * Integer.parseInt(transaction.getBuyingNo().getBuyingPrice()))
+                .collect(Collectors.toList());
+        model.addAttribute("sellerNames", sellerNames);
+        model.addAttribute("totalPrices", totalPrices);
 
         return "mypage/purchashistory";
     }

@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface BuyingUserRepository extends JpaRepository<BuyingUser, BuyingUserId> {
-    List<BuyingUser> findByBuyingPerson(int buyingPerson);
+public interface BuyingUserRepository extends JpaRepository<BuyingUser, Integer> {
+    List<BuyingUser> findByUserNoUserNo(int userNo);  // 수정: findByUserNoUserNo 로 변경
 }
