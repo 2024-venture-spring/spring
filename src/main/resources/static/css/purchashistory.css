@@ -41,6 +41,8 @@
 }
 table{
   width:100%;
+  font-weight: 600;
+  font-size: 14px;
 }
 .transaction-header,
 .transaction-row {
@@ -62,12 +64,7 @@ table{
   flex: 1;
   text-align: center;
 }
-.transaction-item .item-text,
-.transaction-quantity .quantity-amount,
-.transaction-seller .seller-text {
-  font-weight: 600;
-  font-size: 14px;
-}
+
 .transaction-date {
   margin: 0px 20px;
 }
