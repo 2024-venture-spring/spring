@@ -17,8 +17,6 @@ public class BuyingUser implements Serializable {
     @EmbeddedId
     private BuyingUserId id;
 
-    @Column(name = "buying_person")
-    private int buyingPerson;
 
     @Column(name = "buying_quantity")
     private int buyingQuantity;
@@ -37,9 +35,8 @@ public class BuyingUser implements Serializable {
     @JoinColumn(name="user_no")
     private Users userNo;
 
-    public BuyingUser(BuyingUserId id, int buyingPerson, int buyingQuantity, Date buyingDate, GroupBuying buyingNo, Users userNo) {
+    public BuyingUser(BuyingUserId id,int buyingQuantity, Date buyingDate, GroupBuying buyingNo, Users userNo) {
         this.id = id;
-        this.buyingPerson = buyingPerson;
         this.buyingQuantity = buyingQuantity;
         this.buyingDate = buyingDate;
         this.buyingNo = buyingNo;

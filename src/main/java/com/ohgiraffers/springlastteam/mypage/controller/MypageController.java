@@ -1,8 +1,10 @@
 package com.ohgiraffers.springlastteam.mypage.controller;
 
 import com.ohgiraffers.springlastteam.entity.BuyingUser;
+import com.ohgiraffers.springlastteam.entity.GroupBuying;
 import com.ohgiraffers.springlastteam.entity.Users;
 import com.ohgiraffers.springlastteam.mypage.repository.BuyingUserRepository;
+import com.ohgiraffers.springlastteam.mypage.repository.GroupBuyingRepository;
 import com.ohgiraffers.springlastteam.mypage.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,9 +26,13 @@ public class MypageController {
     @Autowired
     private BuyingUserRepository buyingUserRepository;
 
+    @Autowired
+    private GroupBuyingRepository groupBuyingRepository;
+
+
     @GetMapping("/mypage")
     public String mypage(Model model) {
-        int userNo = 3; // 임의의 userNo = 1로 설정
+        int userNo = 1; // 임의의 userNo = 1로 설정
         Users user = userRepository.findById(userNo).orElseThrow(() -> new RuntimeException("User not found"));
         model.addAttribute("user", user);
         return "mypage/mypage";
@@ -86,7 +92,7 @@ public class MypageController {
 
     @GetMapping("/purchashistory")
     public String getPurchaseHistory(Model model) {
-        int userNo = 3; // 임의의 userNo = 3로 설정
+        int userNo = 1; // 임의의 userNo = 3로 설정
         Users user = userRepository.findById(userNo).orElseThrow(() -> new RuntimeException("User not found"));
         List<BuyingUser> transactions = buyingUserRepository.findByUserNoUserNo(userNo);
         model.addAttribute("transactions", transactions);
@@ -103,5 +109,20 @@ public class MypageController {
         model.addAttribute("totalPrices", totalPrices);
 
         return "mypage/purchashistory";
+    }
+    @GetMapping("/mypage/myposts")
+    public String getMyPosts(Model model) {
+        int userNo = 1; // 임의의 userNo 설정
+        Users user = userRepository.findById(userNo).orElseThrow(() -> new RuntimeException("User not found"));
+        List<GroupBuying> myPosts = groupBuyingRepository.findByUser_UserNo(userNo); // 수정된 메서드 호출
+        model.addAttribute("myPosts", myPosts);
+        model.addAttribute("profileName", user.getUserName()); // 추가: 프로필 이름 설정
+        return "mypage/mywritelist";
+    }
+
+    @PostMapping("/mypage/myposts/delete")
+    public String deleteMyPost(@RequestParam int postId) {
+        groupBuyingRepository.deleteById(postId);
+        return "redirect:/mypage/myposts";
     }
 }
