@@ -26,7 +26,7 @@ public class LoginController {
 
     @GetMapping("/login")
     public String loginForm() {
-        return "login"; // 오류 메시지를 설정하지 않고 로그인 폼만 표시
+        return "login";
     }
 
     @PostMapping("/login")
