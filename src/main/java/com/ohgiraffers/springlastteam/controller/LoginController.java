@@ -1,7 +1,7 @@
 package com.ohgiraffers.springlastteam.controller;
 
 import com.ohgiraffers.springlastteam.entity.Users;
-import com.ohgiraffers.springlastteam.gonggu.dto.UserDTO;
+import com.ohgiraffers.springlastteam.login.dto.UserDTO;
 import com.ohgiraffers.springlastteam.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.slf4j.Logger;

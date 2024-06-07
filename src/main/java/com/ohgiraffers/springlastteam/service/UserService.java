@@ -2,7 +2,7 @@ package com.ohgiraffers.springlastteam.service;
 
 
 import com.ohgiraffers.springlastteam.entity.Users;
-import com.ohgiraffers.springlastteam.gonggu.dto.UserDTO;
+import com.ohgiraffers.springlastteam.login.dto.UserDTO;
 
 
 public interface UserService {

@@ -1,8 +1,8 @@
 package com.ohgiraffers.springlastteam.service;
 
 import com.ohgiraffers.springlastteam.entity.Users;
-import com.ohgiraffers.springlastteam.gonggu.dto.UserDTO;
-import com.ohgiraffers.springlastteam.gonggu.repository.UserRepository;
+import com.ohgiraffers.springlastteam.login.dto.UserDTO;
+import com.ohgiraffers.springlastteam.login.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
