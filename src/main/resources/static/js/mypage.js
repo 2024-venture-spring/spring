@@ -81,4 +81,15 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     headerMenu.style.display = 'flex';
+    function checkWindowSize() {
+        const sidebar = document.querySelector('.sidebar');
+        if (window.innerWidth <= 767) {
+            sidebar.style.display = 'none';
+        } else {
+            sidebar.style.display = 'flex';
+        }
+    }
+
+    window.addEventListener('resize', checkWindowSize);
+    checkWindowSize();
 });
