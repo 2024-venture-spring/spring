@@ -3,9 +3,9 @@ package com.ohgiraffers.springlastteam.mypage.controller;
 import com.ohgiraffers.springlastteam.entity.BuyingUser;
 import com.ohgiraffers.springlastteam.entity.GroupBuying;
 import com.ohgiraffers.springlastteam.entity.Users;
-import com.ohgiraffers.springlastteam.mypage.repository.BuyingUserRepository;
-import com.ohgiraffers.springlastteam.mypage.repository.GroupBuyingRepository;
-import com.ohgiraffers.springlastteam.mypage.repository.UserRepository;
+import com.ohgiraffers.springlastteam.mypage.repository.MyPageBuyingUserRepository;
+import com.ohgiraffers.springlastteam.mypage.repository.MyPageGroupBuyingRepository;
+import com.ohgiraffers.springlastteam.mypage.repository.MyPageUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,13 +21,13 @@ import java.util.stream.Collectors;
 public class MypageController {
 
     @Autowired
-    private UserRepository userRepository;
+    private MyPageUserRepository userRepository;
 
     @Autowired
-    private BuyingUserRepository buyingUserRepository;
+    private MyPageBuyingUserRepository buyingUserRepository;
 
     @Autowired
-    private GroupBuyingRepository groupBuyingRepository;
+    private MyPageGroupBuyingRepository groupBuyingRepository;
 
 
     @GetMapping("/mypage")

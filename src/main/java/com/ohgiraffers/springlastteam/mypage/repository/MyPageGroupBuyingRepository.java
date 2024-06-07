@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface GroupBuyingRepository extends JpaRepository<GroupBuying, Integer> {
+public interface MyPageGroupBuyingRepository extends JpaRepository<GroupBuying, Integer> {
     List<GroupBuying> findByUser_UserNo(int userNo); // 수정: findByUser_UserNo 로 변경
 }
