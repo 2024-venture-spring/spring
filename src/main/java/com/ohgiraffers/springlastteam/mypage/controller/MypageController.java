@@ -120,6 +120,8 @@ public class MypageController {
         return "mypage/mywritelist";
     }
 
+
+
     @PostMapping("/mypage/myposts/delete")
     public String deleteMyPost(@RequestParam int postId) {
         groupBuyingRepository.deleteById(postId);
