@@ -31,17 +31,17 @@
             <table>
                 <thead>
                 <tr class="transaction-header">
-                    <th class="header-item">품목</th>
+                    <th class="header-item">물품</th>
                     <th class="header-price">가격</th>
-                    <th class="header-qunatity">품질</th>
+                    <th class="header-quality">품질</th>
                     <th class="header-actions">삭제</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="post, iterStat : ${myPosts}" class="transaction-row">
-                    <td class="transaction-item" th:text="${post.requireItem}">품목</td>
+                    <td class="transaction-item" th:text="${post.requireItem}">물품</td>
                     <td class="transaction-price" th:text="${post.requirePrice}">가격</td>
-                    <td class="transaction-qunatity" th:text="${post.requireQuality}">수량</td>
+                    <td class="transaction-quality" th:text="${post.requireQuality}">품질</td>
                     <td class="transaction-delete">
                         <form method="post" th:action="@{/mypage/myposts/delete}" style="display:inline;">
                             <input type="hidden" name="postId" th:value="${post.requireNo}"/>

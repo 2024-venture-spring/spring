@@ -1,13 +1,14 @@
 package com.ohgiraffers.springlastteam.mypage.controller;
 
-import com.ohgiraffers.springlastteam.entity.BuyingUser;
-import com.ohgiraffers.springlastteam.entity.GroupBuying;
-import com.ohgiraffers.springlastteam.entity.Users;
+import com.ohgiraffers.springlastteam.entity.*;
 import com.ohgiraffers.springlastteam.login.repository.UserRepository;
 import com.ohgiraffers.springlastteam.mypage.repository.MyPageBuyingUserRepository;
 import com.ohgiraffers.springlastteam.mypage.repository.MyPageGroupBuyingRepository;
+import com.ohgiraffers.springlastteam.mypage.repository.MyPageLikeRepository;
+import com.ohgiraffers.springlastteam.mypage.repository.MyPageRequireBuyRepository;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,13 +23,23 @@ import java.util.stream.Collectors;
 public class MypageController {
 
     @Autowired
+    @Qualifier("myPageRequireBuyRepository")
+    private MyPageRequireBuyRepository requireBuyRepository;
+
+    @Autowired
+    @Qualifier("myPageBuyingUserRepository")
     private MyPageBuyingUserRepository buyingUserRepository;
 
     @Autowired
+    @Qualifier("myPageGroupBuyingRepository")
     private MyPageGroupBuyingRepository groupBuyingRepository;
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    @Qualifier("mypageLikeRepository")
+    private MyPageLikeRepository likesRepository;
 
     @GetMapping("/mypage")
     public String mypage(HttpSession session, Model model) {
@@ -122,7 +133,7 @@ public class MypageController {
             return "redirect:/login";
         }
         int userNo = user.getUserNo();
-        List<GroupBuying> myPosts = groupBuyingRepository.findByUser_UserNo(userNo);
+        List<RequireBuy> myPosts = requireBuyRepository.findByUser_UserNo(userNo);
         model.addAttribute("myPosts", myPosts);
         model.addAttribute("profileName", user.getUserName());
         return "mypage/mywritelist";
@@ -134,7 +145,23 @@ public class MypageController {
         if (user == null) {
             return "redirect:/login";
         }
-        groupBuyingRepository.deleteById(postId);
+        requireBuyRepository.deleteById(postId);
         return "redirect:/mypage/myposts";
+    }
+
+    @GetMapping("/mypage/mylikes")
+    public String getMyLikes(HttpSession session, Model model) {
+        Users user = (Users) session.getAttribute("user");
+        if (user == null) {
+            return "redirect:/login";
+        }
+        int userNo = user.getUserNo();
+        List<Likes> likes = likesRepository.findByUser_UserNo(userNo);
+        List<RequireBuy> myPosts = likes.stream()
+                .map(Likes::getRequireBuy)
+                .collect(Collectors.toList());
+        model.addAttribute("myPosts", myPosts);
+        model.addAttribute("profileName", user.getUserName());
+        return "mypage/likelist";
     }
 }
