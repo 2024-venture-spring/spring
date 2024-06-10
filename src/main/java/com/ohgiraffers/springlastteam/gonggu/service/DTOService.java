@@ -111,6 +111,7 @@ public class DTOService {
 
     @Transactional
     public void requestGroupBuying(BuyingUserDTO newBuyingUser) {
+        System.out.println("buyingNO : " + newBuyingUser.getBuyingNo());
         GroupBuying groupBuying = groupBuyingRepository.findById(newBuyingUser.getBuyingNo())
                 .orElseThrow(() -> new IllegalArgumentException("공동구매번호 삽입 안됨"));
         Users user = userRepository.findById(newBuyingUser.getUserNo())

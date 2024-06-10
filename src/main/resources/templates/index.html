@@ -42,7 +42,7 @@
             <a th:href="@{/logout}" class="auth-button">로그아웃</a>
         </div>
     </div>
-</aside>
+</aside>`
 <div class="content">
     <div th:each="groupBuying : ${groupBuyingList}" >
         <div class="post">
@@ -86,13 +86,17 @@
             </div>
             <div class="purchase-section" style="display:none;">
                 <p>물품 :</p>
-                <div class="quantity-input">
-                    <button onclick="decreaseQuantity(this)">-</button>
-                    <input type="number" class="quantity" value="1" min="1">
-                    <button onclick="increaseQuantity(this)">+</button>
-                </div>
-                <button onclick="submitPurchase(this)">확인</button>
+                <form action="/" method="POST">
+<!--                    <input type="number" name="buyingNo" value="${buyingNo}">-->
+                    <div class="quantity-input">
+                        <button type="button" onclick="decreaseQuantity(this)">-</button>
+                        <input type="number" name="quantity" class="quantity" value="1" min="1">
+                        <button type="button" onclick="increaseQuantity(this)">+</button>
+                    </div>
+                    <button type="submit">확인</button>
+                </form>
             </div>
+
         </div>
     </div>
 </div>

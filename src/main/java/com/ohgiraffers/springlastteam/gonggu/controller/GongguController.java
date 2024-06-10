@@ -1,13 +1,17 @@
 package com.ohgiraffers.springlastteam.gonggu.controller;
 
+import com.ohgiraffers.springlastteam.entity.BuyingUser;
+import com.ohgiraffers.springlastteam.entity.GroupBuying;
 import com.ohgiraffers.springlastteam.entity.Likes;
 import com.ohgiraffers.springlastteam.entity.Users;
 import com.ohgiraffers.springlastteam.gonggu.dto.BuyingUserDTO;
 import com.ohgiraffers.springlastteam.gonggu.dto.GroupBuyingDTO;
 import com.ohgiraffers.springlastteam.gonggu.dto.RequireBuyDTO;
 import com.ohgiraffers.springlastteam.gonggu.dto.UserDTO;
+import com.ohgiraffers.springlastteam.gonggu.repository.RequireBuyRepository;
 import com.ohgiraffers.springlastteam.gonggu.service.DTOService;
 import com.ohgiraffers.springlastteam.gonggu.repository.LikesRepository;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
@@ -28,11 +32,13 @@ public class GongguController {
     private final DTOService dtoService;
     private final LikesRepository likesRepository;
     private final ModelMapper modelMapper;
+    private final RequireBuyRepository requireBuyRepository;
 
-    public GongguController(DTOService dtoService, LikesRepository likesRepository, ModelMapper modelMapper) {
+    public GongguController(DTOService dtoService, LikesRepository likesRepository, ModelMapper modelMapper, RequireBuyRepository requireBuyRepository) {
         this.dtoService = dtoService;
         this.likesRepository = likesRepository;
         this.modelMapper = modelMapper;
+        this.requireBuyRepository = requireBuyRepository;
     }
 
     @GetMapping("/")
@@ -73,6 +79,23 @@ public class GongguController {
     public ResponseEntity<Map<String, Boolean>> checkLikeStatus(@RequestParam int userNo, @RequestParam int requireNo) {
         boolean liked = likesRepository.findByUserUserNoAndRequireBuyRequireNo(userNo, requireNo).isPresent();
         return ResponseEntity.ok(Collections.singletonMap("liked", liked));
+    }
+
+
+    @PostMapping("/")
+    public String saveUser(HttpSession session,
+                           @RequestParam int quantity,
+
+                           BuyingUserDTO newRequestgUser) {
+        Users user = (Users) session.getAttribute("user");
+
+        System.out.println("======");
+        newRequestgUser.setUserNo(user.getUserNo());
+        newRequestgUser.setBuyingDate(new java.util.Date());
+        newRequestgUser.setBuyingQuantity(quantity);
+        newRequestgUser.setBuyingNo(1);
+        dtoService.requestGroupBuying(newRequestgUser);
+        return "redirect:/";
     }
 
     @GetMapping("/save")
