@@ -7,7 +7,6 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Table(name = "buying_user")
 @Getter
 @Setter
 @ToString
@@ -17,29 +16,16 @@ public class BuyingUser implements Serializable {
     @EmbeddedId
     private BuyingUserId id;
 
-
     @Column(name = "buying_quantity")
     private int buyingQuantity;
-    @Column
 
+    @Column(name = "buying_date")
     @Temporal(TemporalType.DATE)
     private Date buyingDate;
 
-    @MapsId("buyingNo")
-    @ManyToOne
-    @JoinColumn(name="buying_no")
-    private GroupBuying buyingNo;
-
-    @MapsId("userNo")
-    @ManyToOne
-    @JoinColumn(name="user_no")
-    private Users userNo;
-
-    public BuyingUser(BuyingUserId id,int buyingQuantity, Date buyingDate, GroupBuying buyingNo, Users userNo) {
+    public BuyingUser(BuyingUserId id, int buyingQuantity, Date buyingDate) {
         this.id = id;
         this.buyingQuantity = buyingQuantity;
         this.buyingDate = buyingDate;
-        this.buyingNo = buyingNo;
-        this.userNo = userNo;
     }
 }

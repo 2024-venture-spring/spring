@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 @Repository("myPageBuyingUserRepository")
 public interface MyPageBuyingUserRepository extends JpaRepository<BuyingUser, Integer> {
-    List<BuyingUser> findByUserNoUserNo(int userNo);  // 수정: findByUserNoUserNo 로 변경
+    List<BuyingUser> findById_UserNo_UserNo(int userNo);
 }

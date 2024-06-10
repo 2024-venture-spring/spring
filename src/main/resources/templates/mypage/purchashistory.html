@@ -40,7 +40,7 @@
         <tbody>
         <tr th:each="transaction, iterStat : ${transactions}" class="transaction-row">
           <td class="transaction-date" th:text="${#dates.format(transaction.buyingDate, 'yyyy-MM-dd')}">날짜</td>
-          <td class="transaction-item"><span class="item-text" th:text="${transaction.buyingNo.buyingTitle}">품목</span></td>
+          <td class="transaction-item"><span class="item-text" th:text="${transaction.id.buyingNo.buyingItem}">품목</span></td>
           <td class="transaction-quantity"><span class="quantity-amount" th:text="${transaction.buyingQuantity}">수량</span></td>
           <td class="transaction-price"><span class="price-text" th:text="${totalPrices[iterStat.index]}">가격</span></td>
           <td class="transaction-seller"><span class="seller-text" th:text="${sellerNames[iterStat.index]}">판매자</span></td>

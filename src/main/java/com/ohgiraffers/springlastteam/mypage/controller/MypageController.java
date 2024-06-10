@@ -101,30 +101,32 @@ public class MypageController {
 
         return "redirect:/mypage";
     }
-
-    @GetMapping("/purchashistory")
-    public String getPurchaseHistory(HttpSession session, Model model) {
-        Users user = (Users) session.getAttribute("user");
-        if (user == null) {
-            return "redirect:/login";
-        }
-        int userNo = user.getUserNo();
-        List<BuyingUser> transactions = buyingUserRepository.findByUserNoUserNo(userNo);
-        model.addAttribute("transactions", transactions);
-        model.addAttribute("profileName", user.getUserName());
-
-        // 추가: 판매자 이름 및 총 가격 설정
-        List<String> sellerNames = transactions.stream()
-                .map(transaction -> transaction.getBuyingNo().getUser().getUserName())
-                .collect(Collectors.toList());
-        List<Integer> totalPrices = transactions.stream()
-                .map(transaction -> transaction.getBuyingQuantity() * Integer.parseInt(transaction.getBuyingNo().getBuyingPrice()))
-                .collect(Collectors.toList());
-        model.addAttribute("sellerNames", sellerNames);
-        model.addAttribute("totalPrices", totalPrices);
-
-        return "mypage/purchashistory";
+/* 쓸데없는 일이 되어버린 구매내역 */
+// 쓸데없는 일이 되어버린 구매내역을 다시 활성화
+@GetMapping("/purchashistory")
+public String getPurchaseHistory(HttpSession session, Model model) {
+    Users user = (Users) session.getAttribute("user");
+    if (user == null) {
+        return "redirect:/login";
     }
+    int userNo = user.getUserNo();
+    List<BuyingUser> transactions = buyingUserRepository.findById_UserNo_UserNo(userNo);
+    model.addAttribute("transactions", transactions);
+    model.addAttribute("profileName", user.getUserName());
+
+    // 추가: 판매자 이름 및 총 가격 설정
+    List<String> sellerNames = transactions.stream()
+            .map(transaction -> transaction.getId().getBuyingNo().getUser().getUserName())
+            .collect(Collectors.toList());
+    List<Integer> totalPrices = transactions.stream()
+            .map(transaction -> transaction.getBuyingQuantity() * Integer.parseInt(String.valueOf(transaction.getId().getBuyingNo().getBuyingPrice())))
+            .collect(Collectors.toList());
+    model.addAttribute("sellerNames", sellerNames);
+    model.addAttribute("totalPrices", totalPrices);
+
+    return "mypage/purchashistory";
+}
+
 
     @GetMapping("/mypage/myposts")
     public String getMyPosts(HttpSession session, Model model) {
