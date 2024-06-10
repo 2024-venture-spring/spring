@@ -102,7 +102,6 @@ public class MypageController {
         return "redirect:/mypage";
     }
 /* 쓸데없는 일이 되어버린 구매내역 */
-// 쓸데없는 일이 되어버린 구매내역을 다시 활성화
 @GetMapping("/purchashistory")
 public String getPurchaseHistory(HttpSession session, Model model) {
     Users user = (Users) session.getAttribute("user");
