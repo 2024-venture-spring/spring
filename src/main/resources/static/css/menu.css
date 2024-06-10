@@ -72,6 +72,8 @@ header .contentmenu a {
     margin-left: 200px;
     padding: 20px;
     display: flex;
+    flex-direction: column;
+    gap: 20px;
     justify-content: center;
     align-items: center;
 }
@@ -117,6 +119,7 @@ aside.sidebar {
     padding-top: 20px;
     padding-left: 20px;
     box-sizing: border-box;
+    display: flex;
 }
 
 aside.sidebar a {
@@ -126,7 +129,41 @@ aside.sidebar a {
     width: 100%;
     padding: 10px;
     box-sizing: border-box;
-    color: #cCCCCC;
+    color: #cccccc;
+}
+.sidebar .auth-buttons {
+    padding: 0px 40px 20px 20px;
+    display: flex;
+    justify-content: space-between;
+
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sidebar .auth-button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 10px;
+    background-color: #000;
+    color: white;
+    font-size: 14px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    flex: 1;
+    white-space: nowrap;
+}
+
+
+.sidebar .auth-button:hover {
+    background-color: #333;
+}
+
+.sidebar .auth-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: auto;
+    padding-top: 30px;
 }
 
 .logo {
@@ -171,10 +208,6 @@ aside.sidebar a {
     box-shadow: 0 0 0 2px black;
 }
 
-.sidebar .menu-item:last-child {
-    margin-bottom: auto;
-}
-
 .menu-item.active div {
     font-weight: bold;
 }
@@ -198,6 +231,7 @@ aside.sidebar a {
 }
 
 .post {
+    margin-top:20px;
     background-color: #f9f9f9;
     border: 1px solid #ddd;
     padding: 15px;
@@ -236,7 +270,7 @@ aside.sidebar a {
 }
 
 .product-info th, .product-info td {
-    padding: 6px;
+    padding: 6px 30px 6px 30px;
     border: 1px solid #ddd;
 }
 
@@ -289,6 +323,13 @@ aside.sidebar a {
     top: -2px;
 }
 
+.like-button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
 .like-icon {
     vertical-align: middle;
     width: 20px;
@@ -296,7 +337,8 @@ aside.sidebar a {
     margin-right: 5px;
     cursor: pointer;
 }
-/*구매 버튼*/
+
+/* 구매 버튼 */
 .purchase-button {
     padding: 8px 13px;
     border: none;
@@ -327,6 +369,7 @@ aside.sidebar a {
     justify-content: center;
     text-align: center;
 }
+
 .purchase-section button {
     padding: 8px 13px;
     border: none;
@@ -336,20 +379,20 @@ aside.sidebar a {
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s ease;
-
 }
 
 .purchase-section button:hover {
     background-color: #263238;
 }
-/*값 입력*/
+
+/* 값 입력 */
 .quantity-input {
     display: flex;
     align-items: center;
     justify-content: center;
-
 }
-/* - + 버튼 스타일*/
+
+/* - + 버튼 스타일 */
 .quantity-input button {
     padding: 10px;
     background-color: white;
@@ -417,7 +460,6 @@ aside.sidebar a {
 }
 
 @media (max-width: 767px) {
-
     .content {
         margin-left: 0;
         flex-direction: column;
@@ -463,6 +505,5 @@ aside.sidebar a {
         display: block;
         max-width: 100%;
         width: 70%;
-
     }
 }
