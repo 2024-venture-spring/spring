@@ -1,0 +1,202 @@
+.container {
+    width: 100%;
+    height: 100vh;
+    /*background: rgba(255, 255, 255, 1);*/
+    background-color: #f8f8f8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-card {
+    width: 600px;
+    background: #f9f9f9;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 100px;
+    margin-left: 200px;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.profile-picture {
+    width: 90px;
+    height: 60px;
+    background: rgba(247, 247, 247, 1);
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.profile-name-text {
+    font-weight: 500;
+    font-size: 24px;
+    color: rgba(0, 0, 0, 1);
+}
+
+.transaction-table {
+    width: 100%;
+}
+
+table {
+    width: 100%;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.transaction-header,
+.transaction-row {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.transaction-header {
+    font-weight: 700;
+    color: rgba(130, 130, 130, 1);
+}
+
+.transaction-row {
+    font-weight: 400;
+    color: rgba(0, 0, 0, 1);
+}
+
+.transaction-header th,
+.transaction-row td {
+    flex: 1;
+    text-align: center;
+}
+
+.transaction-title {
+    margin: 0px 20px;
+}
+
+.transaction-item {
+
+    margin: 5px 0px 0px 0px;
+}
+.transaction-item a{
+    text-decoration: none;
+    color:black;
+}
+.transaction-item a:hover{
+    text-decoration: none;
+    color:#cccccc;
+}.transaction-price a{
+    text-decoration: none;
+    color:black;
+}
+.transaction-price a:hover{
+    text-decoration: none;
+    color:#cccccc;
+}.transaction-quality a{
+    text-decoration: none;
+    color:black;
+}
+.transaction-quality a:hover{
+    text-decoration: none;
+    color:#cccccc;
+}
+.transaction-price {
+    margin: 5px 0px 0px 0px;
+
+}
+.transaction-quality {
+    margin: 5px 0px 0px 0px;
+
+}
+
+.transaction-edit {
+    margin: 5px 0px 0px 0px;
+
+}
+
+.transaction-delete {
+    margin: 0px;
+}
+
+.header-title,
+.header-item,
+.header-price,
+.header-edit,
+.header-actions {
+    text-align: center;
+}
+.like-table{
+    padding-bottom: 20px;
+}
+.delete-button {
+    left: 38%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: rgb(255, 95, 95);
+    cursor: pointer;
+    border: 2px solid rgb(255, 201, 201);
+    transition-duration: 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+.bin-bottom {
+    width: 10px;
+    z-index: 2;
+}
+.bin-top {
+    width: 13px;
+    transform-origin: right;
+    transition-duration: 0.3s;
+    z-index: 2;
+}
+.delete-button:hover .bin-top {
+    transform: rotate(45deg);
+}
+.delete-button:hover {
+    background-color: rgb(255, 0, 0);
+}
+.delete-button:active {
+    transform: scale(0.9);
+}
+.garbage {
+    position: absolute;
+    width: 14px;
+    height: auto;
+    z-index: 1;
+    opacity: 0;
+    transition: all 0.3s;
+}
+.delete-button:hover .garbage {
+    animation: throw 0.4s linear;
+}
+@keyframes throw {
+    from {
+        transform: translate(-400%, -700%);
+        opacity: 0;
+    }
+    to {
+        transform: translate(0%, 0%);
+        opacity: 1;
+    }
+}
+
+@media (max-width: 767px) {
+    .profile-card {
+        width: 90%;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        position: absolute;
+        margin-left: 0px;
+        overflow-x: hidden;
+    }
+}

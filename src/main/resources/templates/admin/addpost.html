@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>글쓰기</title>
+    <script type="text/javascript" th:src="@{/js/menu.js}" th:defer></script>
+    <script type="text/javascript" th:src="@{/js/post.js}" th:defer></script>
+    <script type="text/javascript" th:src="@{/js/admin.js}" th:defer></script>
+    <script type="text/javascript" th:src="@{/js/addpost.js}" th:defer></script>
+    <link rel="stylesheet" th:href="@{/css/menu.css}">
+    <link rel="stylesheet" th:href="@{/css/admin/addpost.css}">
+
+</head>
+<body>
+<header>
+    <h2>새 글 추가</h2>
+</header>
+<aside class="sidebar">
+    <div class="logo">
+        <a th:href="@{/}"><img th:src="@{/img/logo.jpeg}" alt="로고"></a>
+    </div>
+    <div class="menu-item" onclick="handleHomeClick(this)">
+        <a th:href="@{/}"><img th:src="@{/img/before-home.png}" alt="공구"><div>공구</div></a>
+    </div>
+    <div class="menu-item" onclick="changeIconAndHideMenu(this, '/img/after-dollar.png')">
+        <a th:href="@{/price}"><img th:src="@{/img/before-dollar.png}" alt="물가" th:data-active-src="@{/img/after-dollar.png}" th:data-inactive-src="@{/img/before-dollar.png}"><div>물가</div></a>
+    </div>
+    <div class="menu-item profile" onclick="toggleProfileBorderAndHideMenu(this)">
+        <a th:href="@{/mypage}"><img th:src="@{/img/before-profile.png}" alt="마이페이지" th:data-active-src="@{/img/after-profile.png}" th:data-inactive-src="@{/img/before-profile.png}"><div>마이페이지</div></a>
+    </div>
+    <div th:if="${session.user != null and session.user.userRights == 'Y'}" class="menu-item profile active" onclick="toggleProfileBorderAndHideMenu(this)">
+        <a th:href="@{/admin/admin-user}"><img th:src="@{/img/after-profile.png}" alt="어드민페이지"><div>관리자 페이지</div></a>
+    </div>
+    <div class="auth-buttons">
+        <div th:if="${session.user == null}">
+            <a th:href="@{/login}" class="auth-button">로그인</a>
+            <a th:href="@{/register}" class="auth-button">회원가입</a>
+        </div>
+        <div th:if="${session.user != null}">
+            <a th:href="@{/logout}" class="auth-button">로그아웃</a>
+        </div>
+    </div>
+</aside>
+
+<div class="centered-form">
+    <form action="/admin/addpost" method="post" enctype="multipart/form-data">
+        <label>이름</label>
+        <p th:text="${user.userName}"></p>
+        <br><br>
+        <label for="buying_text">글 내용</label><br>
+        <textarea id="buying_text" name="buying_text" required></textarea><br><br>
+        <label for="buying_item">품목</label><br>
+        <input type="text" id="buying_item" name="buying_item" required><br><br>
+        <label for="buying_price">가격</label><br>
+        <input type="number" id="buying_price" name="buying_price" required><br><br>
+        <label for="buying_quality">품질</label><br>
+        <input type="text" id="buying_quality" name="buying_quality" required><br><br>
+        <label for="image">파일 첨부</label><br>
+        <input type="file" id="image" name="image" multiple style="display:none;" onchange="updateFileList()">
+        <div tabindex="0" class="plusButton" onclick="document.getElementById('image').click();">
+            <svg class="plusIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
+                <g mask="url(#mask0_21_345)">
+                    <path d="M13.75 23.75V16.25H6.25V13.75H13.75V6.25H16.25V13.75H23.75V16.25H16.25V23.75H13.75Z"></path>
+                </g>
+            </svg>
+        </div>
+        <div id="fileList"></div>
+        <br><br>
+        <button type="submit">등록</button>
+    </form>
+</div>
+
+<div class="footer-wrapper">
+    <div th:replace="~{admin/footer :: footer}" class="desktop-footer"></div>
+</div>
+</body>
+</html>
