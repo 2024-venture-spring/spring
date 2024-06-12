@@ -16,10 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Controller
 public class GongguController {
@@ -113,15 +110,41 @@ public class GongguController {
     }
 
     @GetMapping("/save")
-    public String addBuyingUser(BuyingUserDTO newBuyingUser) {
-        newBuyingUser.setUserNo(1);
-        newBuyingUser.setBuyingNo(3);
+    public String addBuyingUser(BuyingUserDTO newBuyingUser, HttpSession session) {
+        int userNo = newBuyingUser.getUserNo();
+        int buyingNo = newBuyingUser.getBuyingNo();
+
+        // 세션에서 중복인지 내역 확인
+        Set<Integer> appliedProducts = (Set<Integer>) session.getAttribute("appliedProducts");
+        if (appliedProducts != null && appliedProducts.contains(buyingNo)) {
+            return "redirect:/duplicatePurchaseMessage";
+        }
+
+        // 중복 아니면 킵고잉
         newBuyingUser.setBuyingQuantity(5);
         newBuyingUser.setBuyingDate(new java.util.Date());
 
         dtoService.requestGroupBuying(newBuyingUser);
+
+        // 기록 추추가
+        if (appliedProducts == null) {
+            appliedProducts = new HashSet<>();
+        }
+        appliedProducts.add(buyingNo);
+        session.setAttribute("appliedProducts", appliedProducts);
+
         return "data/save";
     }
+
+    @Controller
+    public class DuplicatePurchaseController {
+
+        @GetMapping("/duplicatePurchaseMessage")
+        public String showDuplicatePurchaseMessage() {
+            return "duplicatePurchaseMessage";
+        }
+    }
+
 
     @GetMapping("/delete")
     public String deleteBuyingUser(Integer buyingNo, Integer userNo) {
