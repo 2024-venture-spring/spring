@@ -80,71 +80,159 @@
 # Project Structure
 ```plaintext
 project-root
-├── src
-│   ├── main
-│   │   ├── java
-│   │   │   └── com
-│   │   │       └── venture
-│   │   │           └── spring
-│   │   │               ├── Application.java
-│   │   │               ├── controller
-│   │   │               │   ├── MainController.java
-│   │   │               │   └── 
-│   │   └── resources
-│   │       ├── static
-│   │       │   ├── css
-│   │       │   │   ├── style.css
-│   │       │   │   ├── admin-userpage.css
-│   │       │   │   ├── adminpage.css
-│   │       │   │   ├── listde.css
-│   │       │   │   ├── login.css
-│   │       │   │   ├── lostwrite.css
-│   │       │   │   ├── register.css
-│   │       │   │   ├── trade.css
-│   │       │   │   ├── write.css
-│   │       │   ├── img
-│   │       │   │   ├── asf.png
-│   │       │   │   ├── bean.gif
-│   │       │   │   ├── campus.png
-│   │       │   │   ├── Ckong.jpg
-│   │       │   │   ├──logo.png
-│   │       │   │   ├── main1.png
-│   │       │   │   ├── main2.png
-│   │       │   │   ├── Skong.jpg
-│   │       │   ├── js
-│   │       │   │   ├── admin-userpage.js
-│   │       │   │   ├── adminpage.js
-│   │       │   │   ├── adminpost.js
-│   │       │   │   ├── chat.js
-│   │       │   │   ├── listdetail.js
-│   │       │   │   ├── posts.js
-│   │       │   │   ├── write.js
-│   │       ├── templates
-│   │       │   ├── trade
-│   │       │   │   ├── list.html
-│   │       │   │   ├── listde.html
-│   │       │   │   ├── lost.html
-│   │       │   │   ├── lostwrite.html
-│   │       │   │   ├── posts.html
-│   │       │   │   ├── write.html
-│   │       │   ├── fragments
-│   │       │       ├── admin-header.html
-│   │       │       ├── footer.html
-│   │       │       ├─- header.html
-│   │       ├── admin-login.html
-│   │       ├── agree.html
-│   │       ├── chatroo.html
-│   │       ├── index.html
-│   │       ├── login.html
-│   │       ├── register.html
-│   │       ├── application.properties
-│   │       └── data.sql (optional, for initial data setup)
-│       └── java
-│           └── com
-│               └── venture
-│                   └── suyaho
-│                       └── SuyahoApplicationTests.java
-└── build.gradle
+├── main
+│   ├── java
+│   │   └── com
+│   │       └── ohgiraffers
+│   │           └── springlastteam
+│   │               ├── SpringLastTeamApplication.java
+│   │               ├── admin
+│   │               │   ├── controller
+│   │               │   │   └── AdminController.java
+│   │               │   ├── dto
+│   │               │   │   ├── GroupBuyingDTO.java
+│   │               │   │   └── ImageDTO.java
+│   │               │   ├── repository
+│   │               │   │   ├── BuyingUserRepository.java
+│   │               │   │   ├── GroupBuyingRepository.java
+│   │               │   │   ├── ImageRepository.java
+│   │               │   │   └── UserRepository.java
+│   │               │   └── service
+│   │               │       └── AdminService.java
+│   │               ├── config
+│   │               │   └── MapperConfiguration.java
+│   │               ├── controller
+│   │               │   └── MainController.java
+│   │               ├── entity
+│   │               │   ├── BuyingUser.java
+│   │               │   ├── BuyingUserId.java
+│   │               │   ├── GroupBuying.java
+│   │               │   ├── Image.java
+│   │               │   ├── Likes.java
+│   │               │   ├── RequireBuy.java
+│   │               │   └── Users.java
+│   │               ├── gonggu
+│   │               │   ├── controller
+│   │               │   │   └── GongguController.java
+│   │               │   ├── dto
+│   │               │   │   ├── BuyingUserDTO.java
+│   │               │   │   ├── BuyingUserIdDTO.java
+│   │               │   │   ├── GroupBuyingDTO.java
+│   │               │   │   ├── LikesDTO.java
+│   │               │   │   ├── RequireBuyDTO.java
+│   │               │   │   └── UserDTO.java
+│   │               │   ├── repository
+│   │               │   │   ├── DTORepository.java
+│   │               │   │   ├── GroupBuyingRepository.java
+│   │               │   │   ├── LikesRepository.java
+│   │               │   │   ├── RequireBuyRepository.java
+│   │               │   │   └── UserRepository.java
+│   │               │   └── service
+│   │               │       └── DTOService.java
+│   │               ├── login
+│   │               │   ├── controller
+│   │               │   │   └── LoginController.java
+│   │               │   ├── dto
+│   │               │   │   └── UserDTO.java
+│   │               │   ├── repository
+│   │               │   │   └── LoginRepository.java
+│   │               │   └── service
+│   │               │       ├── UserService.java
+│   │               │       └── UserServiceImpl.java
+│   │               ├── mypage
+│   │               │   ├── controller
+│   │               │   │   └── MypageController.java
+│   │               │   └── repository
+│   │               │       ├── MyPageBuyingUserRepository.java
+│   │               │       ├── MyPageGroupBuyingRepository.java
+│   │               │       ├── MyPageLikeRepository.java
+│   │               │       └── MyPageRequireBuyRepository.java
+│   │               └── price
+│   │                   ├── PriceController.java
+│   │                   └── PriceDTO.java
+│   └── resources
+│       ├── application.yml
+│       ├── static
+│       │   ├── css
+│       │   │   ├── admin
+│       │   │   │   ├── addpost.css
+│       │   │   │   ├── admin-list.css
+│       │   │   │   ├── admin-post.css
+│       │   │   │   └── admin-user.css
+│       │   │   ├── info.css
+│       │   │   ├── menu.css
+│       │   │   ├── mypage
+│       │   │   │   ├── mypage.css
+│       │   │   │   ├── mywritelist.css
+│       │   │   │   ├── purchashistory.css
+│       │   │   │   └── sdf.css
+│       │   │   ├── price.css
+│       │   │   └── signup.css
+│       │   ├── img
+│       │   │   ├── after-dollar.png
+│       │   │   ├── after-home.png
+│       │   │   ├── after-notification.png
+│       │   │   ├── after-plus.png
+│       │   │   ├── after-profile.png
+│       │   │   ├── after-search.png
+│       │   │   ├── before-dollar.png
+│       │   │   ├── before-home.png
+│       │   │   ├── before-notification.png
+│       │   │   ├── before-plus.png
+│       │   │   ├── before-profile.png
+│       │   │   ├── before-search.png
+│       │   │   ├── check-circle.svg
+│       │   │   ├── default-profile.png
+│       │   │   ├── heart-icon-red.png
+│       │   │   ├── heart-icon.png
+│       │   │   ├── logo.jpeg
+│       │   │   ├── profile_image.png
+│       │   │   └── sweet-potatoes.png
+│       │   └── js
+│       │       ├── addpost.js
+│       │       ├── admin.js
+│       │       ├── content.js
+│       │       ├── menu.js
+│       │       ├── mypage.js
+│       │       └── post.js
+│       └── templates
+│           ├── admin
+│           │   ├── addpost.html
+│           │   ├── admin-list.html
+│           │   ├── admin-post.html
+│           │   ├── admin-user.html
+│           │   ├── footer.html
+│           │   └── sidebar.html
+│           ├── data
+│           │   ├── delete.html
+│           │   ├── list.html
+│           │   └── save.html
+│           ├── fragments
+│           │   └── common.html
+│           ├── index.html
+│           ├── info
+│           │   ├── frequentlyAsk.html
+│           │   └── info.html
+│           ├── login.html
+│           ├── mypage
+│           │   ├── footer.html
+│           │   ├── likelist.html
+│           │   ├── mypage.html
+│           │   ├── mywritelist.html
+│           │   ├── purchashistory.html
+│           │   ├── requirebuydetails.html
+│           │   └── sidebar.html
+│           ├── price.html
+│           ├── register.html
+│           └── want.html
+└── test
+    └── java
+        └── com
+            └── ohgiraffers
+                └── springlastteam
+                    └── SpringLastTeamApplicationTests.java
+
+
 
 ```
 
