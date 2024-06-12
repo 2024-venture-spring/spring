@@ -131,7 +131,6 @@ public class GongguController {
         return "data/delete";
     }
 
-
     @PostMapping("/mypage")
     public String requestGroupBuying(@RequestParam() int groupBuyingNo,
                                      @RequestParam int quantity,

@@ -22,11 +22,14 @@ public class BuyingUserDTO {
 
     private Date buyingDate;
 
-    public BuyingUserDTO(int buyingNo, int userNo, int buyingPerson, int buyingQuantity, Date buyingDate) {
+    private boolean isAlreadyPurchased;
+
+    public BuyingUserDTO(int buyingNo, int userNo, int buyingPerson, int buyingQuantity, Date buyingDate, boolean isAlreadyPurchased) {
         this.buyingNo = buyingNo;
         this.userNo = userNo;
         this.buyingPerson = buyingPerson;
         this.buyingQuantity = buyingQuantity;
         this.buyingDate = buyingDate;
+        this.isAlreadyPurchased = isAlreadyPurchased;
     }
 }
