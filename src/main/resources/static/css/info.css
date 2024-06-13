@@ -311,6 +311,23 @@ hr {
     width: 200%;
     border: 1px solid #000000;
 }
+
+.pagination{
+    display: flex;
+    justify-content: center;
+}
+
+.pagination .btn-current {
+    background-color: #4ba2ff;
+    color: white;
+}
+.pagination .btn-current:hover {
+    background-color: #557af4;
+    color: white;
+}
+
+
+
 @media (max-width: 767px) {
     header h4 {
         margin-left: 0px;
