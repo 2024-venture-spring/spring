@@ -48,7 +48,14 @@ body {
   margin-left: 90%;
 
 
-}
+}.profile_name {
+   font-size: 24px;
+   font-weight: bold;
+   display: flex;
+   align-items: center;
+   white-space: nowrap; /* Ensure text stays in one line */
+ }
+
 
 .delete_account_button {
   background: #ff4d4f;
