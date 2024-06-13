@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>아모여: 마이페이지</title>
+  <link rel="icon" th:href="@{/img/logo.jpeg}">
+  <script type="text/javascript" th:src="@{/js/mypage.js}" th:defer></script>
+  <script type="text/javascript" th:src="@{/js/content.js}" th:defer></script>
+  <link rel="stylesheet" th:href="@{/css/menu.css}">
+  <link rel="stylesheet" th:href="@{/css/mypage/mypage.css}">
+</head>
+<body>
+<header th:fragment="header">
+  <div class="contentmenu" id="headerMenu">
+    <a th:href="@{/mypage}" class="menu-link active">마이페이지</a>
+    <a th:href="@{/purchashistory}" class="menu-link">공구 내역</a>
+    <a th:href="@{/mypage/mylikes}" class="menu-link">좋아요</a>
+  </div>
+</header>
+<div th:replace="~{mypage/sidebar :: sidebar}"></div>
+
+<div class="profile-container">
+  <div class="profile_section">
+    <!-- 회원탈퇴 폼을 여기에 옮김 -->
+    <div class="delete_account_section">
+      <form th:action="@{/mypage/delete}" method="post" id="deleteAccountForm">
+        <input type="hidden" id="deleteUserNo" name="userNo" th:value="${user.userNo}">
+        <button type="submit" class="delete_account_button">탈퇴</button>
+      </form>
+    </div>
+    <form th:action="@{/mypage/update}" th:object="${user}" method="post" onsubmit="return validateForm();">
+      <input type="hidden" th:field="*{userNo}">
+      <div class="profile_picture">
+        <div class="picture_frame">
+          <div class="profile_image">
+            <img th:src="@{/img/after-profile.png}" alt="Profile Image" style="width: 64px; height: 64px;">
+          </div>
+        </div>
+        <div class="profile_name">
+          <span class="name_text" th:text="*{userName}"></span>
+          <div class="delete_account_section">
+            <!-- 회원탈퇴 폼은 이곳에서 제거되었습니다 -->
+          </div>
+        </div>
+      </div>
+      <div class="id_section">
+        <span class="id_label">ID</span>
+        <div class="id_value">
+          <span class="id_text" th:text="*{userId}"></span>
+        </div>
+      </div>
+      <div class="phone_section">
+        <span class="phone_label">Phone</span>
+        <div class="phone_value">
+          <span class="phone_text" th:text="*{userPhone}"></span>
+          <input type="text" name="userPhone" placeholder="변경할 전화번호를 입력해주세요" th:value="*{userPhone}">
+        </div>
+      </div>
+      <div class="apartment_section">
+        <span class="apartment_label">아파트</span>
+        <div class="apartment_value">
+          <span class="apartment_text" th:text="*{userApartment}"></span>
+          <input type="text" name="userApartment" placeholder="변경할 아파트 이름을 입력해주세요" th:value="*{userApartment}">
+        </div>
+      </div>
+      <div class="apartment_num_section">
+        <span class="apartment_num_label"></span>
+        <div class="apartment_num_value">
+          <span class="apartment_num_text" th:text="*{userApartNum}"></span>
+          <input type="text" name="userApartNum" placeholder="변경할 상세 주소를 입력해주세요" th:value="*{userApartNum}">
+        </div>
+      </div>
+      <div class="password_section">
+        <h3>비밀번호 변경</h3>
+        <div class="current_password">
+          <span class="current_password_label">현재 비밀번호</span>
+          <div th:if="${errorMessage}" class="error-message" style="color:red;">
+            <p th:text="${errorMessage}"></p>
+          </div>
+          <input type="password" name="currentPassword" placeholder="현재 비밀번호를 입력해주세요"><br>
+        </div>
+        <div class="new_password">
+          <span class="new_password_label">변경할 비밀번호</span>
+          <input type="password" name="newPassword" placeholder="변경할 비밀번호를 입력해주세요"><br>
+        </div>
+        <div class="confirm_password">
+          <span class="confirm_password_label">비밀번호 확인</span>
+          <input type="password" name="confirmPassword" placeholder="변경할 비밀번호를 다시 입력해주세요"><br>
+        </div>
+      </div>
+      <div class="save_button">
+        <button type="submit" class="save_button">변경 사항 저장</button>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="footer-wrapper">
+  <div th:replace="~{mypage/footer :: footer}" class="desktop-footer"></div>
+</div>
+</body>
+</html>

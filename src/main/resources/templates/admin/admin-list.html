@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>아모여: 사용자 관리 페이지</title>
+    <link rel="icon" th:href="@{/img/logo.jpeg}">
+    <script type="text/javascript" th:src="@{/js/menu.js}" th:defer></script>
+    <script type="text/javascript" th:src="@{/js/post.js}" th:defer></script>
+    <script type="text/javascript" th:src="@{/js/admin.js}" th:defer></script>
+    <script type="text/javascript" th:src="@{/js/content.js}" th:defer></script>
+    <link rel="stylesheet" th:href="@{/css/menu.css}">
+    <link rel="stylesheet" th:href="@{/css/admin/admin-list.css}">
+</head>
+<body>
+
+<!-- 사이드바 포함 -->
+<div th:replace="~{admin/sidebar :: sidebar}"></div>
+
+<div class="content">
+    <div class="section" id="user-management">
+        <h2>🎫구매한 사람 목록🎫</h2>
+        <table class="list-table">
+            <thead>
+            <tr>
+                <th>구매일시</th>
+                <th>이름</th>
+                <th>수량</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="buyingUser : ${buyingUsers}">
+                <td th:text="${buyingUser.buyingDate}"></td>
+                <td th:text="${buyingUser.getId().getUserNo().userName}"></td>
+                <td th:text="${buyingUser.buyingQuantity}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- 푸터 포함 -->
+<div class="footer-wrapper">
+    <div th:replace="~{admin/footer :: footer}" class="desktop-footer"></div>
+</div>
+</body>
+</html>

@@ -2,21 +2,23 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>아모여:아파트머시기이-게시판이든뭐든 자유롭게 바꾸세요</title>
-    <script type="text/javascript" th:src="@{/js/menu.js}" th:defer></script>
-    <script type="text/javascript" th:src="@{/js/post.js}" th:defer></script>
-
-    <script type="text/javascript" th:src="@{/js/content.js}" th:defer></script>
+    <title>아모여: 아파트머시기머시기</title>
+    <script type="text/javascript" th:src="@{/js/menu.js}" defer></script>
+    <script type="text/javascript" th:src="@{/js/post.js}" defer></script>
+    <script type="text/javascript" th:src="@{/js/content.js}" defer></script>
     <link rel="icon" th:href="@{/img/logo.jpeg}">
     <link rel="stylesheet" th:href="@{/css/menu.css}">
+    <link rel="stylesheet" th:href="@{/css/info.css}">
 </head>
+
 <body>
 <header>
     <div class="contentmenu" id="headerMenu">
-        <a th:href="@{/}" class="menu-link active">메뉴1</a>
-        <a th:href="@{/}" class="menu-link">메뉴2</a>
-        <a th:href="@{/}" class="menu-link">메뉴3</a>
+        <a th:href="@{/}" class="menu-link active">공구</a>
+        <a th:href="@{/want}" class="menu-link">수요조사</a>
     </div>
 </header>
 <aside class="sidebar">
@@ -26,75 +28,136 @@
     <div class="menu-item active" onclick="handleHomeClick(this)">
         <a th:href="@{/}"><img th:src="@{/img/after-home.png}" alt="공구" data-active-src="@{/img/after-home.png}" data-inactive-src="@{/img/before-home.png}"><div>공구</div></a>
     </div>
-    <div class="menu-item" onclick="changeIconAndHideMenu(this, '/img/after-search.png')">
-        <a th:href="@{/search}"><img th:src="@{/img/before-search.png}" alt="검색" data-active-src="@{/img/after-search.png}" data-inactive-src="@{/img/before-search.png}"><div>검색</div></a>
-    </div>
     <div class="menu-item" onclick="changeIconAndHideMenu(this, '/img/after-dollar.png')">
         <a th:href="@{/price}"><img th:src="@{/img/before-dollar.png}" alt="물가" data-active-src="@{/img/after-dollar.png}" data-inactive-src="@{/img/before-dollar.png}"><div>물가</div></a>
     </div>
     <div class="menu-item profile" onclick="toggleProfileBorderAndHideMenu(this)">
         <a th:href="@{/mypage}"><img th:src="@{/img/before-profile.png}" alt="마이페이지" data-active-src="@{/img/after-profile.png}" data-inactive-src="@{/img/before-profile.png}"><div>마이페이지</div></a>
     </div>
+    <div th:if="${session.user != null and session.user.userRights == 'Y'}" class="menu-item profile" onclick="toggleProfileBorderAndHideMenu(this)">
+        <a th:href="@{/admin/admin-user}"><img th:src="@{/img/before-profile.png}" alt="어드민페이지" th:data-active-src="@{/img/after-profile.png}" th:data-inactive-src="@{/img/before-profile.png}"><div>관리자 페이지</div></a>
+    </div>
+    <div>
+        <div th:if="${session.user == null}">
+            <a th:href="@{/login}">
+                <button class="Btn">
+                    <div class="signs"><svg viewBox="0 0 512 512"><path d="M217.9 105.9L340.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L217.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1L32 320c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM352 416l64 0c17.7 0 32-14.3 32-32l0-256c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l64 0c53 0 96 43 96 96l0 256c0 53-43 96-96 96l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32z"></path></svg></div>
+                    <div class="texts">로그인</div>
+                </button>
+            </a>
+            <a th:href="@{/register}">
+                <button class="Btn">
+                    <div class="signs"><svg viewBox="0 0 512 512"><path d="M217.9 105.9L340.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L217.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1L32 320c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM352 416l64 0c17.7 0 32-14.3 32-32l0-256c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l64 0c53 0 96 43 96 96l0 256c0 53-43 96-96 96l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32z"></path></svg></div>
+                    <div class="texts">회원가입</div>
+                </button>
+            </a>
+        </div>
+        <div th:if="${session.user != null}">
+            <a th:href="@{/logout}">
+                <button class="logout-Btn">
+                    <div class="sign"><svg viewBox="0 0 512 512"><path d="M217.9 105.9L340.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L217.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1L32 320c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM352 416l64 0c17.7 0 32-14.3 32-32l0-256c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l64 0c53 0 96 43 96 96l0 256c0 53-43 96-96 96l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32z"></path></svg></div>
+                    <div class="text">로그아웃</div>
+                </button>
+            </a>
+        </div>
+    </div>
 </aside>
-
 <div class="content">
+    <div class="ui-input-container">
+        <form action="/search" method="get">
+        <input placeholder="검색어를 입력하세요." id="input" class="ui-input" name="query" type="text" th:value="${query}">
+            <div class="ui-input-underline"></div>
+            <div class="ui-input-highlight"></div>
+            <div class="ui-input-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <path
+                            stroke-linejoin="round"
+                            stroke-linecap="round"
+                            stroke-width="2"
+                            stroke="currentColor"
+                            d="M21 21L16.65 16.65M19 11C19 15.4183 15.4183 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11Z"
+                    ></path>
+                </svg>
+            </div>
+        </form>
+    </div>
+</div>
+
+    <div th:if="${noResultsMessage != null}" class="no-results-message">
+        <p th:text="${noResultsMessage}"></p>
+    </div>
     <div class="post-container">
-        <div class="post">
+        <div th:each="groupBuying : ${groupBuyingList}" class="post">
             <div class="post-header">
                 <img class="profile-pic" th:src="@{/img/after-profile.png}" alt="profile picture">
                 <div class="post-info">
-                    <div class="username">김계란</div>
-                    <div class="post-date">24/05/27 12:00</div>
+                    <div class="username" th:text="${groupBuying.userName}"></div>
                 </div>
             </div>
             <div class="post-images">
-                <img class="post-image" th:src="@{/img/sweet-potatoes.png}" alt="고구마">
-                <img class="post-image" th:src="@{/img/sweet-potatoes.png}" alt="고구마">
-                <img class="post-image" th:src="@{/img/sweet-potatoes.png}" alt="고구마">
-                <img class="post-image" th:src="@{/img/sweet-potatoes.png}" alt="고구마">
+                <div th:each="image : ${groupBuying.imageList}">
+                    <img class="post-image" th:src="@{'img/' + ${image.imgName}}" th:alt="${image.imgOriginFilename}">
+                </div>
             </div>
-            <div class="post-description">
-                고창 햇고구마 🍠 팔아요 키로당 오만원~~ <br>
-                부모님께서 18년째 농사 중입니다 믿고 드세요 <br>
-                올 겨울 아이들한테 군고구마 맛있게 먹여봅시다!
-            </div>
-
+            <div class="post-description" th:text="${groupBuying.buyingText}"></div>
             <div class="product-info mobile-view">
                 <table>
                     <tr>
                         <th>품목</th>
-                        <td>농산물 &gt; 고구마</td>
+                        <td th:text="${groupBuying.buyingItem}"></td>
                     </tr>
                     <tr>
-                        <th>가격 / Kg</th>
-                        <td>50,000 / 1Kg</td>
+                        <th>가격</th>
+                        <td th:text="${groupBuying.buyingPrice}"></td>
                     </tr>
                     <tr>
                         <th>품질</th>
-                        <td>A+</td>
+                        <td th:text="${groupBuying.buyingQuality}"></td>
                     </tr>
                 </table>
             </div>
-            <br>
-            <div class="post-actions">
-                <div>
-                    <img class="like-icon" src="/img/heart-icon.png" alt="like icon" onclick="updateLikes(this)" data-likes="4" data-kg="21">
-                    <span class="like-text">21 kg 구매했습니다.</span>
-                </div>
-                <div><span class="purchase-text">4 명이 구매했습니다.</span></div>
+            <div class="post-action">
+                <button class="purchase-button" type="button" onclick="togglePurchaseSection(this)">신청</button>
+            </div>
+            <div class="purchase-section" style="display:none;">
+                <p th:text="'물품 : ' + ${groupBuying.getBuyingItem()}"></p>
+                <form action="/mypage" method="post" class="purchase-form" onsubmit="handleSubmit(event)">
+                    <input type="hidden" name="buyingNo" th:value="${groupBuying.buyingNo}">
+                    <div class="quantity-input">
+                        <button type="button" onclick="decreaseQuantity(this)">-</button>
+                        <input type="number" class="quantity" name="quantity" value="1" min="1">
+                        <button type="button" onclick="increaseQuantity(this)">+</button>
+                    </div>
+                    <button type="submit">확인</button>
+                </form>
             </div>
         </div>
+    </div>
 
-
+<div class="fab-container">
+    <div class="fab shadow">
+        <div class="fab-content">
+            <span class="material-icons">support_agent</span>
+        </div>
+    </div>
+    <div class="sub-button shadow">
+        <a th:href="@{/contact}" target="_blank">
+            <span class="material-icons">mail_outline</span>
+        </a>
+    </div>    <div class="sub-button shadow">
+    <a th:href="@{/fre-ask}" target="_blank">
+        <span class="material-icons">help_outline</span>
+    </a>
+</div>
+    <div class="sub-button shadow">
+        <a th:href="@{/info}" target="_blank">
+            <span class="material-icons">language</span>
+        </a>
     </div>
 </div>
-
 <footer class="footer">
     <div class="menu-item active" onclick="handleHomeClick(this)">
         <a th:href="@{/}"><img th:src="@{/img/after-home.png}" alt="공구" data-active-src="@{/img/after-home.png}" data-inactive-src="@{/img/before-home.png}"></a>
-    </div>
-    <div class="menu-item" onclick="changeIconAndHideMenu(this, '/img/after-search.png')">
-        <a th:href="@{/search}"><img th:src="@{/img/before-search.png}" alt="검색" data-active-src="@{/img/after-search.png}" data-inactive-src="@{/img/before-search.png}"></a>
     </div>
     <div class="menu-item" onclick="changeIconAndHideMenu(this, '/img/after-dollar.png')">
         <a th:href="@{/price}"><img th:src="@{/img/before-dollar.png}" alt="물가" data-active-src="@{/img/after-dollar.png}" data-inactive-src="@{/img/before-dollar.png}"></a>
@@ -102,10 +165,13 @@
     <div class="menu-item profile" onclick="toggleProfileBorderAndHideMenu(this)">
         <a th:href="@{/mypage}"><img th:src="@{/img/before-profile.png}" alt="마이페이지" data-active-src="@{/img/after-profile.png}" data-inactive-src="@{/img/before-profile.png}"></a>
     </div>
+    <div th:if="${session.user != null and session.user.userRights == 'Y'}" class="menu-item profile" onclick="toggleProfileBorderAndHideMenu(this)">
+        <a th:href="@{/admin/admin-user}"><img th:src="@{/img/before-profile.png}" alt="어드민페이지" th:data-active-src="@{/img/after-profile.png}" th:data-inactive-src="@{/img/before-profile.png}"></a>
+    </div>
 </footer>
-
 <footer class="fixed-footer">
     <div>© 2024 Muyaho. All rights reserved.</div>
 </footer>
+<div id="notification-container"></div>
 </body>
 </html>
