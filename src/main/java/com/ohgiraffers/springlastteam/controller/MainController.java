@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class MainController {
+
 /*    @GetMapping(value={"/info"})
     public String info() {return "info/info";}*/
 
