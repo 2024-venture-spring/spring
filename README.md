@@ -86,6 +86,8 @@
 <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white">
 
 ## 📌 ER 다이어그램
+<img width="902" alt="image" src="https://github.com/2024-venture-spring/spring/assets/147049456/227aa4a6-2bde-4c2b-bcd3-bac80226522d">
+
 
 
 ## 📌 브랜치 활용
