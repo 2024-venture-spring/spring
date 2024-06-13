@@ -327,8 +327,10 @@ hr {
 }
 
 .btn-primary{
-    border-color:#6a8af3;
+    border-color:white;
     background-color:#6a8af3;
+
+
 }
 .btn-primary:hover{
     background-color:#4569dd;
@@ -342,7 +344,7 @@ hr {
 }
 .btn-secondary:hover{
     background-color:white;
-    color:gray;
+    color:blue;
     border-color:white;
 }
 @media (max-width: 767px) {
@@ -406,7 +408,7 @@ hr {
     }
     .btn-secondary:hover{
         background-color:white;
-        color:gray;
+        color:blue;
         border-color:white;
     }
     .info-post table {
