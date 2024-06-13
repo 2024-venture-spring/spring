@@ -83,7 +83,9 @@
 #### ✔ 협업 툴
 <a href = "https://cooked-tumbleweed-b51.notion.site/1b0122ceef10446183be0719a9e9133c?pvs=4">![Notion](https://img.shields.io/badge/notion-FCBFBD?style=for-the-badge&logo=notion&logoColor=white)</a>
 ![GitHub](https://img.shields.io/badge/GitHub-FECC00?style=for-the-badge&logo=GitHub&logoColor=white)
-<img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white">
+<img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white"> ![kakaotalk_resized](https://github.com/2024-venture-spring/spring/assets/147049456/89e65745-1bb6-4494-8fd2-70090cd61c1a) 카카오톡
+
+
 
 ## 📌 ER 다이어그램
 <img width="902" alt="image" src="https://github.com/2024-venture-spring/spring/assets/147049456/227aa4a6-2bde-4c2b-bcd3-bac80226522d">
