@@ -1,15 +1,13 @@
 package com.ohgiraffers.springlastteam.mypage.controller;
 
-import com.ohgiraffers.springlastteam.entity.BuyingUser;
-import com.ohgiraffers.springlastteam.entity.Likes;
-import com.ohgiraffers.springlastteam.entity.RequireBuy;
-import com.ohgiraffers.springlastteam.entity.Users;
+import com.ohgiraffers.springlastteam.entity.*;
 
 import com.ohgiraffers.springlastteam.gonggu.repository.UserRepository;
 import com.ohgiraffers.springlastteam.mypage.repository.MyPageBuyingUserRepository;
 import com.ohgiraffers.springlastteam.mypage.repository.MyPageGroupBuyingRepository;
 import com.ohgiraffers.springlastteam.mypage.repository.MyPageLikeRepository;
 import com.ohgiraffers.springlastteam.mypage.repository.MyPageRequireBuyRepository;
+import com.ohgiraffers.springlastteam.mypage.service.MypageService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -17,12 +15,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Controller
@@ -46,6 +42,12 @@ public class MypageController {
     @Autowired
     @Qualifier("mypageLikeRepository")
     private MyPageLikeRepository likesRepository;
+
+    @Autowired
+    private MypageService mypageService;
+
+    @Autowired
+    private MyPageGroupBuyingRepository groupBuyingsRepository;
 
     @GetMapping("/mypage")
     public String mypage(HttpSession session, Model model) {
@@ -131,6 +133,20 @@ public class MypageController {
         model.addAttribute("totalPrices", totalPrices);
 
         return "mypage/purchashistory";
+    }
+
+    @PostMapping("/mypage/purchashistory")
+    public String deletePurchaseHistory(@RequestParam("buyingNo") int buyingNo,
+                                        HttpSession session) {
+        System.out.println("buyingNO : " + buyingNo);
+        Users user = (Users) session.getAttribute("user");
+        user.getUserNo();
+        System.out.println("유저번호 : " + user.getUserNo());
+
+        int userNo = user.getUserNo();
+        mypageService.deleteById(userNo, buyingNo);
+
+        return "redirect:/purchashistory";
     }
 
     @PostMapping("/mypage/delete")
