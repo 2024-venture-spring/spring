@@ -454,4 +454,11 @@ hr {
         width: 100%;
         margin: 0 auto;
     }
+    .faq-container {
+        width: 90%;
+        margin-left: 40%;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
 }
