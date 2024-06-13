@@ -229,7 +229,7 @@ header .contentmenu a {
     left: 50%;
     right: 0;
     bottom: 24px;
-    margin-left: auto;
+    margin-left: 0;
     margin-right: auto;
     border-radius: 6px;
     background-color: #313e2c;
