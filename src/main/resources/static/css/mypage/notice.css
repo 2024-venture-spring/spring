@@ -65,4 +65,8 @@
     .info-author{
         margin-right:10%;
     }
+    .info-header{
+        margin:0px;
+        padding:0px;
+    }
 }
