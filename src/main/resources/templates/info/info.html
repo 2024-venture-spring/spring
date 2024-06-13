@@ -17,7 +17,6 @@
         <a th:href="@{/info}" class="menu-link active">공지사항</a>
         <a th:href="@{/fre-ask}" class="menu-link">자주 묻는 질문</a>
     </div>
-
 </header>
 <aside class="sidebar">
     <div class="logo">
@@ -60,9 +59,8 @@
             </a>
         </div>
     </div>
-</aside><br><br><h1 th:href="@{/info}">공지사항</h1><hr>
+</aside>
 <main>
-
     <div class="info-post">
         <div th:if="${session.user != null and session.user.userRights == 'Y'}">
             <a class="info-btn" th:href="@{/info/create}">공지사항 작성</a>
@@ -83,6 +81,13 @@
             </tr>
             </tbody>
         </table>
+        <div class="pagination">
+            <div class="btn-group" role="group" aria-label="Page navigation">
+                <a th:if="${currentPage > 0}" th:href="@{/info(page=${currentPage - 1})}" class="btn btn-primary">맨 앞으로</a>
+                <a th:each="i : ${#numbers.sequence(0, totalPages - 1)}" th:classappend="${i == currentPage} ? 'btn-secondary' : 'btn-primary'" th:href="@{/info(page=${i})}" class="btn" th:text="${i + 1}">1</a>
+                <a th:if="${currentPage < totalPages - 1}" th:href="@{/info(page=${currentPage + 1})}" class="btn btn-primary">맨 뒤로</a>
+            </div>
+        </div>
     </div>
 </main>
 <div class="fab-container">
@@ -95,11 +100,12 @@
         <a th:href="@{/contact}" target="_blank">
             <span class="material-icons">mail_outline</span>
         </a>
-    </div>    <div class="sub-button shadow">
-    <a th:href="@{/fre-ask}" target="_blank">
-        <span class="material-icons">help_outline</span>
-    </a>
-</div>
+    </div>
+    <div class="sub-button shadow">
+        <a th:href="@{/fre-ask}" target="_blank">
+            <span class="material-icons">help_outline</span>
+        </a>
+    </div>
     <div class="sub-button shadow">
         <a th:href="@{/info}" target="_blank">
             <span class="material-icons">language</span>

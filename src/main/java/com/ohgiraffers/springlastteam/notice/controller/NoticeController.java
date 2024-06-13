@@ -7,6 +7,9 @@ import com.ohgiraffers.springlastteam.notice.service.NoticeService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -27,9 +30,12 @@ public class NoticeController {
     }
 
     @GetMapping
-    public String getAllNotices(Model model, HttpSession session) {
-        List<Notice> notices = noticeService.findAllNotices();
-        model.addAttribute("notices", notices);
+    public String getAllNotices(Model model, HttpSession session, @RequestParam(defaultValue = "0") int page) {
+        Pageable pageable = PageRequest.of(page, 10);
+        Page<Notice> noticePage = noticeService.findAllNotices(pageable);
+        model.addAttribute("notices", noticePage.getContent());
+        model.addAttribute("totalPages", noticePage.getTotalPages());
+        model.addAttribute("currentPage", page);
         Users user = (Users) session.getAttribute("user");
         if (user != null && "Y".equals(user.getUserRights())) {
             session.setAttribute("isAdmin", true);
