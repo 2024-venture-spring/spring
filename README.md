@@ -23,22 +23,22 @@
 
 #### * 프로그램의 영향 *
 
-**기대 효과**
+🥦 기대효과
 
 경제적 부담 완화
-공동구매를 통해 원자재 가격 급등으로 인한 부담을 여러 소비자가 나눠 갖게 됩니다. 이를 통해 소비자들은 합리적인 가격으로 고품질의 제품을 제공받을 수 있게 되어 경제적 부담이 완화됩니다.
+- 공동구매를 통해 원자재 가격 급등으로 인한 부담을 여러 소비자가 나눠 갖게 됩니다. 이를 통해 소비자들은 합리적인 가격으로 고품질의 제품을 제공받을 수 있게 되어 경제적 부담이 완화됩니다.
 
 합리적인 소비
-소량 구매도 도매의 혜택을 누릴 수 있게 되면서 소비자들의 구매력이 향상됩니다. 이를 통해 소비자들은 보다 합리적이고 효율적인 소비를 할 수 있습니다.
+- 소량 구매도 도매의 혜택을 누릴 수 있게 되면서 소비자들의 구매력이 향상됩니다. 이를 통해 소비자들은 보다 합리적이고 효율적인 소비를 할 수 있습니다.
 
 지역 경제 활성화
-생산지에서 직접 구매함으로써 지역 경제에도 긍정적인 영향을 미칠 수 있습니다. 중간 유통 단계를 줄임으로써 생산자와 소비자 모두에게 이익이 돌아가며, 지역 경제가 활성화되는 효과를 기대할 수 있습니다.
+- 생산지에서 직접 구매함으로써 지역 경제에도 긍정적인 영향을 미칠 수 있습니다. 중간 유통 단계를 줄임으로써 생산자와 소비자 모두에게 이익이 돌아가며, 지역 경제가 활성화되는 효과를 기대할 수 있습니다.
 
 이웃과의 소통
-공동구매를 통해 소비자들 간의 협력과 소통이 증가합니다. 이는 자연스럽게 커뮤니티 형성으로 이어지며, 동네사람들과의 커뮤니케이션이 더더욱 강해질 것입니다.
+- 공동구매를 통해 소비자들 간의 협력과 소통이 증가합니다. 이는 자연스럽게 커뮤니티 형성으로 이어지며, 동네사람들과의 커뮤니케이션이 더더욱 강해질 것입니다.
 
 환경 보호
-대량 구매를 통해 불필요한 낭비를 줄임으로써 환경 보호에도 기여할 수 있습니다. 이는 지속 가능한 소비와 환경 보호에 긍정적인 영향을 미칠 것입니다.
+- 대량 구매를 통해 불필요한 낭비를 줄임으로써 환경 보호에도 기여할 수 있습니다. 이는 지속 가능한 소비와 환경 보호에 긍정적인 영향을 미칠 것입니다.
 
 이와 같은 여러 기대 효과를 통해 아-모여는 경제적 부담을 덜고, 합리적인 소비를 촉진하며, 지역 경제를 활성화하고, 사회적 연대를 강화하며, 환경 보호에 기여하는 다목적 플랫폼으로 자리잡을 것입니다.
 ## 🔎 개발 과정
@@ -118,7 +118,8 @@ project-root
 │   │               │   └── service
 │   │               │       └── AdminService.java
 │   │               ├── config
-│   │               │   └── MapperConfiguration.java
+│   │               │   ├── MapperConfiguration.java
+│   │               │   └── WebConfiguration.java
 │   │               ├── controller
 │   │               │   └── MainController.java
 │   │               ├── entity
@@ -127,6 +128,7 @@ project-root
 │   │               │   ├── GroupBuying.java
 │   │               │   ├── Image.java
 │   │               │   ├── Likes.java
+│   │               │   ├── Notice.java
 │   │               │   ├── RequireBuy.java
 │   │               │   └── Users.java
 │   │               ├── gonggu
@@ -136,12 +138,14 @@ project-root
 │   │               │   │   ├── BuyingUserDTO.java
 │   │               │   │   ├── BuyingUserIdDTO.java
 │   │               │   │   ├── GroupBuyingDTO.java
+│   │               │   │   ├── ImageDTO.java
 │   │               │   │   ├── LikesDTO.java
 │   │               │   │   ├── RequireBuyDTO.java
 │   │               │   │   └── UserDTO.java
 │   │               │   ├── repository
 │   │               │   │   ├── DTORepository.java
 │   │               │   │   ├── GroupBuyingRepository.java
+│   │               │   │   ├── ImageRepository.java
 │   │               │   │   ├── LikesRepository.java
 │   │               │   │   ├── RequireBuyRepository.java
 │   │               │   │   └── UserRepository.java
@@ -165,6 +169,14 @@ project-root
 │   │               │       ├── MyPageGroupBuyingRepository.java
 │   │               │       ├── MyPageLikeRepository.java
 │   │               │       └── MyPageRequireBuyRepository.java
+│   │               ├── notice
+│   │               │   ├── controller
+│   │               │   │   └── NoticeController.java
+│   │               │   ├── repository
+│   │               │   │   ├── NoticeRepository.java
+│   │               │   │   └── UserRepository.java
+│   │               │   └── service
+│   │               │       └── NoticeService.java
 │   │               └── price
 │   │                   ├── PriceController.java
 │   │                   └── PriceDTO.java
@@ -177,11 +189,13 @@ project-root
 │       │   │   │   ├── admin-list.css
 │       │   │   │   ├── admin-post.css
 │       │   │   │   └── admin-user.css
+│       │   │   ├── contact.css
 │       │   │   ├── info.css
 │       │   │   ├── menu.css
 │       │   │   ├── mypage
 │       │   │   │   ├── mypage.css
 │       │   │   │   ├── mywritelist.css
+│       │   │   │   ├── notice.css
 │       │   │   │   ├── purchashistory.css
 │       │   │   │   └── sdf.css
 │       │   │   ├── price.css
@@ -210,6 +224,7 @@ project-root
 │       │       ├── addpost.js
 │       │       ├── admin.js
 │       │       ├── content.js
+│       │       ├── info.js
 │       │       ├── menu.js
 │       │       ├── mypage.js
 │       │       └── post.js
@@ -221,16 +236,17 @@ project-root
 │           │   ├── admin-user.html
 │           │   ├── footer.html
 │           │   └── sidebar.html
-│           ├── data
-│           │   ├── delete.html
-│           │   ├── list.html
-│           │   └── save.html
+│           ├── document
+│           │   └── terms.html
 │           ├── fragments
 │           │   └── common.html
 │           ├── index.html
 │           ├── info
+│           │   ├── contact.html
 │           │   ├── frequentlyAsk.html
-│           │   └── info.html
+│           │   ├── info.html
+│           │   ├── notice_detail.html
+│           │   └── notice_form.html
 │           ├── login.html
 │           ├── mypage
 │           │   ├── footer.html
@@ -260,8 +276,12 @@ project-root
 
 #### [ 김현수 ]
 
+
 #### [ 오송은 ]
 
+
 #### [ 이은서 ]
+- 저번 팀플에서 게시판 기능을 제대로만들지못해서 아쉬웠는데 지금은 잘 되서 만족하고, 저번 팀플에는 배우는 중이라서 적용하지못하였던 기법들을 이번 팀프로젝트에 적용하니까 생각보다 적용하는과정이 어려웠지만 잘 적용되어 만족합니다.
 
 #### [ 이재혁 ]
+
